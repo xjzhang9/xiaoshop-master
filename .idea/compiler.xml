@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xiaoshop-product" />
+        <module name="xiaoshop-search" />
+        <module name="xiaoshop-cart" />
+        <module name="xiaoshop-seckill" />
+        <module name="xiaoshop-member" />
+        <module name="xiaoshop-pay" />
+        <module name="xiaoshop-auth" />
+        <module name="xiaoshop-backsys" />
+        <module name="xiaoshop-gateway" />
+        <module name="xiaoshop-coupon" />
+        <module name="xiaoshop-ware" />
+        <module name="xiaoshop-order" />
+        <module name="xiaoshop-common" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

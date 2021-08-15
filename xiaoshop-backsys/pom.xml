@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>xiaoshop-master</artifactId>
+        <groupId>com.xjzhang.xiaoshop</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>xiaoshop-backsys</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <shiro.version>1.6.0</shiro.version>
+    </properties>
+
+    <dependencies>
+        <!-- common -->
+        <dependency>
+            <groupId>com.xjzhang.xiaoshop</groupId>
+            <artifactId>xiaoshop-common</artifactId>
+        </dependency>
+
+        <!-- shiro-core -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <!-- shiro-spring -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xjzhang.xiaoshop</groupId>
+    <artifactId>xiaoshop-master</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>xiaoshop-master</name>
+    <description>聚合工程</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>xiaoshop-common</module>
+        <module>xiaoshop-product</module>
+        <module>xiaoshop-cart</module>
+        <module>xiaoshop-order</module>
+        <module>xiaoshop-auth</module>
+        <module>xiaoshop-ware</module>
+        <module>xiaoshop-search</module>
+        <module>xiaoshop-seckill</module>
+        <module>xiaoshop-member</module>
+        <module>xiaoshop-coupon</module>
+        <module>xiaoshop-gateway</module>
+        <module>xiaoshop-pay</module>
+        <module>xiaoshop-backsys</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.xjzhang.xiaoshop</groupId>
+                <artifactId>xiaoshop-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
