@@ -1,4 +1,4 @@
-package com.xjzhang.common.base.wrapper;
+package com.xjzhang.wrapper;
 
 import org.apache.commons.lang.StringUtils;
 

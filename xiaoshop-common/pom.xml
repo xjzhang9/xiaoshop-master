@@ -18,6 +18,12 @@
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
+        <fastjson.version>1.2.70</fastjson.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.io.version>2.5</commons.io.version>
+        <commons.configuration.version>1.10</commons.configuration.version>
+        <druid.version>1.0.28</druid.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <dependencies>
@@ -35,13 +41,13 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!--        服务注册/发现-->
+        <!-- 服务注册/发现-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--        配置中心来做配置管理-->
+        <!-- 配置中心来做配置管理 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
@@ -59,6 +65,13 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
+        <!-- druid线程池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
         <!-- spring boot test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,7 +85,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
-            <scope>provided</scope>
         </dependency>
 
        <!-- mybatis-plus -->
@@ -80,6 +92,37 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>${commons.configuration.version}</version>
+        </dependency>
+
+        <!-- mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
     </dependencies>
 

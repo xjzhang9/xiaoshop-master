@@ -1,4 +1,4 @@
-package com.xjzhang.common.base.wrapper;
+package com.xjzhang.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

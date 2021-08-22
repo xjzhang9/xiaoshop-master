@@ -1,4 +1,4 @@
-package com.xjzhang.common.base.dto;
+package com.xjzhang.dto;
 
 /**
  * 基础dto类

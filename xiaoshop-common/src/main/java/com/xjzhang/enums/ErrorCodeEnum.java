@@ -1,4 +1,4 @@
-package com.xjzhang.common.base.enums;
+package com.xjzhang.enums;
 
 /**
  * error enum

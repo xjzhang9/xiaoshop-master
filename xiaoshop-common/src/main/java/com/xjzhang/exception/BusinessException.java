@@ -1,6 +1,6 @@
-package com.xjzhang.common.base.exception;
+package com.xjzhang.exception;
 
-import com.xjzhang.common.base.enums.ErrorCodeEnum;
+import com.xjzhang.enums.ErrorCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 
 /**

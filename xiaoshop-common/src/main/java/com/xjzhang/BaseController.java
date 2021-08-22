@@ -1,4 +1,4 @@
-package com.xjzhang.common.base;
+package com.xjzhang;
 
 /**
  * 控制器基础类
