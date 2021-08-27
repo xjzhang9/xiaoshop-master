@@ -1,6 +1,6 @@
-package com.xjzhang.exception;
+package com.xjzhang.xiaoshop.exception;
 
-import com.xjzhang.enums.ErrorCodeEnum;
+import com.xjzhang.xiaoshop.enums.ErrorCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 
 /**

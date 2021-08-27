@@ -1,4 +1,4 @@
-package com.xjzhang.wrapper;
+package com.xjzhang.xiaoshop.wrapper;
 
 import org.apache.commons.lang.StringUtils;
 

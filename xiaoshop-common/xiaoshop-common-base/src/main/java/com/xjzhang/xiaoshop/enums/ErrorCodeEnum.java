@@ -1,4 +1,4 @@
-package com.xjzhang.enums;
+package com.xjzhang.xiaoshop.enums;
 
 /**
  * error enum

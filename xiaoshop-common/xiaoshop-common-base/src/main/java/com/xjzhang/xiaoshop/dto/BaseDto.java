@@ -1,4 +1,4 @@
-package com.xjzhang.dto;
+package com.xjzhang.xiaoshop.dto;
 
 /**
  * 基础dto类

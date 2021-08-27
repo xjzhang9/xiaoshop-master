@@ -1,4 +1,4 @@
-package com.xjzhang.wrapper;
+package com.xjzhang.xiaoshop.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

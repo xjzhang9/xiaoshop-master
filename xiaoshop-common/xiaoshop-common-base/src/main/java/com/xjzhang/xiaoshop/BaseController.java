@@ -1,4 +1,4 @@
-package com.xjzhang;
+package com.xjzhang.xiaoshop;
 
 /**
  * 控制器基础类
