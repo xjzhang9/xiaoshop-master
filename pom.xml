@@ -25,6 +25,7 @@
         <module>xiaoshop-gateway</module>
         <module>xiaoshop-pay</module>
         <module>xiaoshop-backsys</module>
+        <module>xiaoshop-generator</module>
     </modules>
 
     <dependencyManagement>

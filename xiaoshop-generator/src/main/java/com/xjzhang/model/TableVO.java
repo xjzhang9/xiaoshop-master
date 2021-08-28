@@ -25,5 +25,8 @@ public class TableVO {
      */
     private String remarks;
 
+    /**
+     * 创建时间
+     */
     private String createTime;
 }
