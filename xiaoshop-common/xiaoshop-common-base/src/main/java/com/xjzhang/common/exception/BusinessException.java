@@ -1,7 +1,6 @@
 package com.xjzhang.common.exception;
 
 import com.xjzhang.common.enums.ErrorCodeEnum;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 业务异常
@@ -10,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.0
  * @date 2021/7/12 20:43
  */
-@Slf4j
 public class BusinessException extends RuntimeException {
     private int code;
 

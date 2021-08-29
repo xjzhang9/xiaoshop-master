@@ -1,10 +1,8 @@
 package com.xjzhang.generator.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.common.BaseController;
-import com.xjzhang.common.wrapper.Wrapper;
-import com.xjzhang.generator.model.TableVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api("测试")
 public class GeneratorController extends BaseController {
+    @ApiOperation("接口")
+    void queryTableList() {
 
-    Wrapper<Page<TableVO>> queryTableList() {
-
-
-        return null;
     }
 }

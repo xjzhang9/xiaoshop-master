@@ -15,10 +15,8 @@
     <dependencies>
         <dependency>
             <groupId>com.xjzhang.xiaoshop</groupId>
-            <artifactId>xiaoshop-common</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <artifactId>xiaoshop-dependency</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>

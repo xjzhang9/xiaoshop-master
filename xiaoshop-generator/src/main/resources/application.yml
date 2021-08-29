@@ -8,6 +8,9 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
   datasource:
-    username: admin
-    password: admin
-    url:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/gulimall_oms?characterEncoding=utf8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: default

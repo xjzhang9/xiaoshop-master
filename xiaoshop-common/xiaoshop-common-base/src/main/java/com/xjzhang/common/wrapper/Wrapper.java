@@ -1,8 +1,8 @@
 package com.xjzhang.common.wrapper;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
 
 import java.io.Serializable;
 
@@ -13,7 +13,6 @@ import java.io.Serializable;
  * @version 1.0
  * @date 2021/7/12 18:21
  */
-@Data
 @JsonSerialize
 public class Wrapper<T> implements Serializable {
 
