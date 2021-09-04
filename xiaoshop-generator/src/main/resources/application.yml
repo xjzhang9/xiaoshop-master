@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: xiaoshop-generator
+  profiles:
+    active: default
   cloud:
     nacos:
       discovery:
@@ -12,5 +14,5 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/gulimall_oms?characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-  profiles:
-    active: default
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml

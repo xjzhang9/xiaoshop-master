@@ -12,40 +12,40 @@ public class ResWrapper {
     public ResWrapper() {
     }
 
-    public static Wrapper ok() {
-        return new Wrapper();
+    public static BaseWrapper ok() {
+        return new BaseWrapper();
     }
 
-    public static Wrapper ok(String msg) {
-        return new Wrapper(Wrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? Wrapper.ILLEGAL_ARGUMENT_MSG : msg );
+    public static BaseWrapper ok(String msg) {
+        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? BaseWrapper.SUCCESS_MSG : msg);
     }
 
-    public static <T> Wrapper<T> ok(T data) {
-        return new Wrapper(Wrapper.SUCCESS_CODE, null, data);
+    public static <T> BaseWrapper<T> ok(T data) {
+        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, BaseWrapper.SUCCESS_MSG, data);
     }
 
-    public static <T> Wrapper<T> ok(String msg,  Object data) {
-        return new Wrapper(Wrapper.SUCCESS_CODE, null, data);
+    public static <T> BaseWrapper<T> ok(String msg, Object data) {
+        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? BaseWrapper.SUCCESS_MSG : msg, data);
     }
 
-    public static Wrapper error() {
-        return new Wrapper(Wrapper.ERROR_CODE, Wrapper.ERROR_MSG);
+    public static BaseWrapper error() {
+        return new BaseWrapper(BaseWrapper.ERROR_CODE, BaseWrapper.ERROR_MSG);
     }
 
 
-    public static Wrapper error(int code) {
-        return new Wrapper(code, Wrapper.ERROR_MSG);
+    public static BaseWrapper error(int code) {
+        return new BaseWrapper(code, BaseWrapper.ERROR_MSG);
     }
 
-    public static Wrapper error(int code, String msg) {
-        return new Wrapper(code, msg, null);
+    public static BaseWrapper error(int code, String msg) {
+        return new BaseWrapper(code, msg, null);
     }
 
-    public static Wrapper error(Exception ex) {
-        return new Wrapper(Wrapper.ERROR_CODE, ex.getMessage());
+    public static BaseWrapper error(Exception ex) {
+        return new BaseWrapper(BaseWrapper.ERROR_CODE, ex.getMessage());
     }
 
-    public static Wrapper illegalArgument() {
-        return new Wrapper(Wrapper.ILLEGAL_ARGUMENT_CODE, Wrapper.ILLEGAL_ARGUMENT_MSG);
+    public static BaseWrapper illegalArgument() {
+        return new BaseWrapper(BaseWrapper.ILLEGAL_ARGUMENT_CODE, BaseWrapper.ILLEGAL_ARGUMENT_MSG);
     }
 }

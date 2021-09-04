@@ -1,9 +1,8 @@
 package com.xjzhang.common.wrapper;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
+import lombok.Data;
 import java.io.Serializable;
 
 /**
@@ -14,7 +13,8 @@ import java.io.Serializable;
  * @date 2021/7/12 18:21
  */
 @JsonSerialize
-public class Wrapper<T> implements Serializable {
+@Data
+public class BaseWrapper<T> implements Serializable {
 
     private static final long serialVersionUID = -9042417141433503027L;
 
@@ -46,19 +46,18 @@ public class Wrapper<T> implements Serializable {
     private T data;
 
 
-    public Wrapper() {
+    public BaseWrapper() {
         this(SUCCESS_CODE, SUCCESS_MSG, null);
     }
 
-    public Wrapper(int code, String msg) {
+    public BaseWrapper(int code, String msg) {
         this(code, msg, null);
     }
 
-    public Wrapper(int code, String msg, T data) {
+    public BaseWrapper(int code, String msg, T data) {
         super();
         this.code(code).msg(msg).data(data);
     }
-
 
     /**
      * 设置 code
@@ -66,7 +65,7 @@ public class Wrapper<T> implements Serializable {
      * @param code
      * @return
      */
-    private Wrapper code(int code) {
+    private BaseWrapper code(int code) {
         this.code = code;
         return this;
     }
@@ -77,7 +76,7 @@ public class Wrapper<T> implements Serializable {
      * @param msg
      * @return
      */
-    private Wrapper msg(String msg) {
+    private BaseWrapper msg(String msg) {
         this.msg = msg;
         return this;
     }
@@ -88,7 +87,7 @@ public class Wrapper<T> implements Serializable {
      * @param data
      * @return
      */
-    public Wrapper data(T data) {
+    public BaseWrapper data(T data) {
         this.data = data;
         return this;
     }
@@ -99,11 +98,11 @@ public class Wrapper<T> implements Serializable {
      */
     @JsonIgnore
     public boolean success() {
-       return Wrapper.SUCCESS_CODE == this.code;
+       return BaseWrapper.SUCCESS_CODE == this.code;
     }
 
-    @JsonIgnore
+   @JsonIgnore
     public boolean error() {
-        return Wrapper.SUCCESS_CODE != this.code;
+        return BaseWrapper.SUCCESS_CODE != this.code;
     }
 }

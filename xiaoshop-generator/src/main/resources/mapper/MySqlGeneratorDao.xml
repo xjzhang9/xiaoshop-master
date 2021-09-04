@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.generator.dao.MySqlGeneratorDao">
+    <!-- 分页获取表列表 -->
+    <select id="queryTableListWithPage" resultType="com.xjzhang.generator.model.TableInfo">
+            select TABLE_NAME, ENGINE, CREATE_TIME, TABLE_COMMENT
+            from information_schema.TABLES where TABLE_SCHEMA=(select database())
+    </select>
+
+    <!-- 查询表列列表 -->
+    <select id="queryColumnList" resultType="com.xjzhang.generator.model.ColumnInfo">
+            select COLUMN_NAME,DATA_TYPE, COLUMN_TYPE, COLUMN_KEY, EXTRA
+            from information_schema.COLUMNS where TABLE_SCHEMA = (select database()) and TABLE_NAME= #{tableName}
+    </select>
+
+    <!-- 根据表名查询表信息 -->
+    <select id="getTableInfo" resultType="com.xjzhang.generator.model.TableInfo">
+            select TABLE_NAME, ENGINE, CREATE_TIME, TABLE_COMMENT
+            from information_schema.TABLES where TABLE_SCHEMA=(select database()) and TABLE_NAME= #{tableName}
+    </select>
+</mapper>

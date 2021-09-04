@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -23,17 +24,17 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-//                .apis(RequestHandlerSelectors.basePackage("cn.cloud.ebiz.webapi.front.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.xjzhang"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Swagger2")
+                .title("xiaoshop")
                 .description("RESTful API接口")
                 .version("1.0.1")
-                .contact(new Contact("hmtest", "", "hm@域名反写"))
+                .contact(new Contact("xjzhang", "", "xjzhang@163.com"))
                 .build();
     }
 }
