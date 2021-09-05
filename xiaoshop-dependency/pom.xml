@@ -22,6 +22,11 @@
             <artifactId>xiaoshop-common-config</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.xjzhang.xiaoshop.common</groupId>
+            <artifactId>xiaoshop-common-utils</artifactId>
+        </dependency>
+
         <!-- spring-actuator 健康检查 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

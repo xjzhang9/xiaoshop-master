@@ -1,6 +1,7 @@
 package com.xjzhang.generator.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 表列字段实体
@@ -8,6 +9,7 @@ import lombok.Data;
  * @version 1.0
  * @date 2021/8/22 20:50
  */
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class ColumnInfo {
     /**
@@ -18,12 +20,17 @@ public class ColumnInfo {
     /**
      * 列字段类型
      */
+    private String dataType;
+
+    /**
+     * 列类型
+     */
     private String columnType;
 
     /**
-     * 是否为主键：0-否，1-是
+     * 列备注
      */
-    private String primaryKey;
+    private String columnComment;
 
     /**
      * 属性名
