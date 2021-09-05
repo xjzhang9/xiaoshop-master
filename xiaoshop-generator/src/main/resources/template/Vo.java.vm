@@ -1,0 +1,16 @@
+/**
+ * ${comments}
+ *
+ * @Author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+
+@Data
+public class ${className}Vo implements Serializable {
+    private static final long serialVersionUID = 1l;
+
+    #foreach($column in $columns)
+        private $column.propertyType $column.propertyName
+    #end
+}

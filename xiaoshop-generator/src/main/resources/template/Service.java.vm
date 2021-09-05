@@ -1,0 +1,18 @@
+package ${package}.${moduleName}.service;
+
+import ${package}.${moduleName}.model.${className}Dto;
+import ${package}.${moduleName}.model.${className};
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * ${comments}
+ *
+ * @Author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+
+@RestController
+@RequestMapping("${moduleName}/${pathName}")
+public class ${className}Service extends IService<$className> {
+}

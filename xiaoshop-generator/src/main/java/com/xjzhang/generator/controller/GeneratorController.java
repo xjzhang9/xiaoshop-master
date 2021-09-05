@@ -39,7 +39,7 @@ public class GeneratorController extends BaseController {
      */
     @PostMapping("queryTableListWithPage")
     public BaseWrapper<IPage<TableInfo>> queryTableListWithPage(@RequestBody QueryDto queryDto) {
-        Page<QueryDto> queryDtoPage = new Page<>(queryDto.getPageIndex(), queryDto.getPageSize());
+        Page<QueryDto> queryDtoPage = new Page(queryDto.getPageIndex(), queryDto.getPageSize());
         IPage<TableInfo> tablePage = generatorService.queryTableListWithPage(queryDtoPage);
 
         return ResWrapper.ok(tablePage);
@@ -47,7 +47,6 @@ public class GeneratorController extends BaseController {
 
     @RequestMapping("code")
     public BaseWrapper code(@RequestBody List<String> tableNameList, HttpServletResponse response) {
-        generatorService.
        return null;
     }
 }

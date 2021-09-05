@@ -1,0 +1,23 @@
+package ${package}.${moduleName}.service.impl;
+
+import ${package}.${moduleName}.model.${className}Dto;
+import ${package}.${moduleName}.model.${className};
+import ${package}.${moduleName}.service.${className}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * ${comments}
+ *
+ * @Author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+
+@Service("${className}Service")
+public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${className}> implements ${className}Service {
+   @Autowired
+    private  ${className}Dao ${classname}Dao;
+
+    com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
+}

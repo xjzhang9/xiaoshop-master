@@ -1,0 +1,14 @@
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * ${comments}
+ *
+ * @Author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+
+@Mapper
+public interface  ${className}Dao extends BaseMapper<${className}> {
+
+}

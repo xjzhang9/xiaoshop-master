@@ -32,13 +32,16 @@ public class ResWrapper {
         return new BaseWrapper(BaseWrapper.ERROR_CODE, BaseWrapper.ERROR_MSG);
     }
 
-
     public static BaseWrapper error(int code) {
         return new BaseWrapper(code, BaseWrapper.ERROR_MSG);
     }
 
     public static BaseWrapper error(int code, String msg) {
         return new BaseWrapper(code, msg, null);
+    }
+
+    public static<T> BaseWrapper<T> error(int code, String msg, T data) {
+        return new BaseWrapper(code, msg, data);
     }
 
     public static BaseWrapper error(Exception ex) {

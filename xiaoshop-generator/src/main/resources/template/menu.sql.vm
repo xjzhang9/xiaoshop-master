@@ -1,0 +1,16 @@
+--菜单SQL
+INSERT INTO tb_pu_sys_menu ('pid', 'name', 'id', 'url', 'type', 'icon', 'order_num', 'status', 'remark', 'leaf', 'level')
+values ('0', '${comments}',  'modules/${moduleName}/${pathName}.html', '1', null, '1', '1','${comments}', '0', '3');
+
+-- 按钮父菜单ID
+set @pid = @@identity
+
+-- 菜单对应按钮SQL
+INSERT INTO `sys_menu` (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+    SELECT @parentId, '查看', null, '${moduleName}:${pathName}:list,${moduleName}:${pathName}:info', '2', null, '6';
+INSERT INTO `sys_menu` (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+    SELECT @parentId, '新增', null, '${moduleName}:${pathName}:save', '2', null, '6';
+INSERT INTO `sys_menu` (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+    SELECT @parentId, '修改', null, '${moduleName}:${pathName}:update', '2', null, '6';
+INSERT INTO `sys_menu` (`parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`)
+    SELECT @parentId, '删除', null, '${moduleName}:${pathName}:delete', '2', null, '6';

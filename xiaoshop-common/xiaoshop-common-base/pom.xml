@@ -14,10 +14,9 @@
     <artifactId>xiaoshop-common-base</artifactId>
 
     <dependencies>
-        <!-- lombok -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.xjzhang.xiaoshop.common</groupId>
+            <artifactId>xiaoshop-common-utils</artifactId>
         </dependency>
     </dependencies>
 

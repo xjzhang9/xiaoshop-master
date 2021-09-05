@@ -1,0 +1,95 @@
+package ${package}.${moduleName}.controller;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xjzhang.common.BaseController;
+import com.xjzhang.common.wrapper.BaseWrapper;
+import com.xjzhang.common.wrapper.ResWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
+import java.util.Array;
+import ${package}.${moduleName}.service.${className}Service;
+import ${package}.${moduleName}.model.${className}Dto;
+import ${package}.${moduleName}.model.${className}Vo;
+
+/**
+ * ${comments}
+ *
+ * @Author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+
+@RestController
+@RequestMapping(value = "${moduleName}/${pathName}", , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class ${className}Controller extends BaseController {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+
+    @ApiOperation(httpMethod = "POST", value = "分页查询 ${className} 信息")
+    @RequestMapping("/query${className}WithPage")
+    @RequiresPermissions("${moduleName}:${pathName}:list")
+    public BaseWrapper<IPage<${className} +"Vo">> query${className}WithPage(@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
+        Page<${className}+"Dto" > queryDtoPage = new Page(${classname} +"Dto".getPageIndex(), ${classname} +"Dto".getPageSize());
+        IPage<${className} +"Vo" > tablePage = ${classname}Service.query${className}WithPage(queryDtoPage);
+
+        return ResWrapper.ok(tablePage);
+    }
+
+    @ApiOperation(httpMethod = "POST", value = "获取 ${className} 信息")
+    @RequestMapping("/get${className}ById")
+    @RequiresPermissions("${moduleName}:${pathName}:info")
+    public BaseWrapper get${className}ById(@PathVariable Long id) {
+        ${className} +"Vo" ${classname} + "Vo" = ${classname}Service.getById(id);
+
+        return ResWrapper.ok(${classname} +"Vo");
+    }
+
+    @PostMapping("/save${className}")
+    @RequiresPermissions("${moduleName}:${pathName}:save")
+    @ApiOperation(httpMethod = "POST", value = "保存 ${className} 信息")
+    public BaseWrapper save${className} (@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
+        BeanUtils.copyProperties( ${classname} +"Dto",  ${classname});
+        boolean result = ${classname}Service.save(${classname});
+
+        result super.handleResult(result);
+    }
+
+
+    @PostMapping("/update${className}ById")
+    @RequiresPermissions("${moduleName}:${pathName}:update")
+    @ApiOperation(httpMethod = "POST", value = "更新${className} 信息")
+    public BaseWrapper update${className}ById (@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
+        BeanUtils.copyProperties( ${classname} +"Dto",  ${classname});
+        boolean result =  ${classname}Service.updateById(${classname});
+
+        result super.handleResult(result);
+    }
+
+    @PostMapping("/delete${className}ById/{id}")
+    @RequiresPermissions("${moduleName}:${pathName}:delete")
+    @ApiOperation(httpMethod = "POST", value = "删除${className} 信息")
+    public BaseWrapper delete${className}ById(@PathVariable Long id) {
+        boolean result = ${classname}Service.removeById(id);
+
+        return super.handleResult(result);
+    }
+
+    @ApiOperation(httpMethod = "POST", value = "批量删除${className} 信息")
+    @RequestMapping("/bathDelete")
+    @RequiresPermissions("${moduleName}:${pathName}:bathDelete")
+    public BaseWrapper bathDelete(@RequestBody ${pk.propertyType}[] ${pk.propertyName}s){
+        boolean result = ${classname}Service.removeByIds(Arrays.asList(${pk.propertyName}s));
+
+        return super.handleResult(result);
+    }
+
+}
