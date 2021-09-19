@@ -1,4 +1,4 @@
-package com.xjzhang.generator.auth.controller;
+package com.xjzhang.auth.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.web.bind.annotation.RequestMapping;

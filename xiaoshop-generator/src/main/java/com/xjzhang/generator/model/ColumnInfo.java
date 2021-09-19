@@ -38,6 +38,11 @@ public class ColumnInfo {
     private String propertyName;
 
     /**
+     * 属性名
+     */
+    private String propertyObjectName;
+
+    /**
      * 属性类型
      */
     private String propertyType;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.sys.user.UserDao">
+  <resultMap id="UserMap" type="com.xjzhang.sys.user.model.User">
+            <result property = "userId" column="user_id"/>
+            <result property = "userName" column="user_name"/>
+            <result property = "password" column="password"/>
+            <result property = "salt" column="salt"/>
+            <result property = "email" column="email"/>
+            <result property = "mobile" column="mobile"/>
+            <result property = "status" column="status"/>
+            <result property = "depId" column="dep_id"/>
+            <result property = "lastLoginIp" column="last_login_ip"/>
+            <result property = "lastLoginLocation" column="last_login_location"/>
+            <result property = "lastLoginTime" column="last_login_time"/>
+            <result property = "isChangedPwd" column="is_changed_pwd"/>
+            <result property = "pwdErrorCount" column="pwd_error_count"/>
+            <result property = "pwdErrorTime" column="pwd_error_time"/>
+            <result property = "createUserId" column="create_user_id"/>
+            <result property = "createTime" column="create_time"/>
+        </resultMap>
+</mapper>

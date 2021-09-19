@@ -31,34 +31,36 @@ import ${package}.${moduleName}.model.${className}Vo;
 @Api(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ${className}Controller extends BaseController {
     @Autowired
-    private ${className}Service ${classname}Service;
+    private ${className}Service ${classObjectName}Service;
 
 
     @ApiOperation(httpMethod = "POST", value = "分页查询 ${className} 信息")
     @RequestMapping("/query${className}WithPage")
     @RequiresPermissions("${moduleName}:${pathName}:list")
-    public BaseWrapper<IPage<${className} +"Vo">> query${className}WithPage(@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
-        Page<${className}+"Dto" > queryDtoPage = new Page(${classname} +"Dto".getPageIndex(), ${classname} +"Dto".getPageSize());
-        IPage<${className} +"Vo" > tablePage = ${classname}Service.query${className}WithPage(queryDtoPage);
-
-        return ResWrapper.ok(tablePage);
+    public BaseWrapper<IPage<${className}Vo>> query${className}WithPage(@RequestBody ${className}Dto  ${classObjectName}Dto) {
+        Page<${className}Dto> queryDtoPage = new Page(${classObjectName}Dto.getPageIndex(), ${classObjectName}Dto.getPageSize());
+        IPage<${className}> tablePage = ${classObjectName}Service.page(queryDtoPage);
+        IPage<${className}Vo> voIPage = ${className}Convert.entity2VoPage(tablePage);
+        return ResWrapper.ok(voIPage);
     }
 
     @ApiOperation(httpMethod = "POST", value = "获取 ${className} 信息")
     @RequestMapping("/get${className}ById")
     @RequiresPermissions("${moduleName}:${pathName}:info")
     public BaseWrapper get${className}ById(@PathVariable Long id) {
-        ${className} +"Vo" ${classname} + "Vo" = ${classname}Service.getById(id);
-
-        return ResWrapper.ok(${classname} +"Vo");
+        ${className} ${classObjectName} = ${classObjectName}Service.getById(id);
+        ${className}Vo ${classObjectName}Vo = new  ${className}Vo();
+        ${className}Vo ${classObjectName}Vo=  ${className}Convert.entity2Vo(${classObjectName});
+        return ResWrapper.ok(${classObjectName}Vo);
     }
 
     @PostMapping("/save${className}")
     @RequiresPermissions("${moduleName}:${pathName}:save")
     @ApiOperation(httpMethod = "POST", value = "保存 ${className} 信息")
-    public BaseWrapper save${className} (@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
-        BeanUtils.copyProperties( ${classname} +"Dto",  ${classname});
-        boolean result = ${classname}Service.save(${classname});
+    public BaseWrapper save${className} (@RequestBody ${className}Dto  ${classObjectName}Dto) {
+        ${className} ${classObjectName} = new  ${className}();
+        ${className} ${classObjectName} = ${className}Convert.dto2Entity(${classObjectName}Dto);
+        boolean result = ${classObjectName}Service.save(${classObjectName});
 
         result super.handleResult(result);
     }
@@ -67,9 +69,10 @@ public class ${className}Controller extends BaseController {
     @PostMapping("/update${className}ById")
     @RequiresPermissions("${moduleName}:${pathName}:update")
     @ApiOperation(httpMethod = "POST", value = "更新${className} 信息")
-    public BaseWrapper update${className}ById (@ResponseBody ${className} +"Dto"  ${classname} +"Dto") {
-        BeanUtils.copyProperties( ${classname} +"Dto",  ${classname});
-        boolean result =  ${classname}Service.updateById(${classname});
+    public BaseWrapper update${className}ById (@RequestBody ${className}Dto  ${classObjectName}Dto) {
+        ${className} ${classObjectName} = new  ${className}();
+        ${className} ${classObjectName} = ${className}Convert.dto2Entity(${classObjectName}Dto);
+        boolean result =  ${classObjectName}Service.updateById(${classObjectName});
 
         result super.handleResult(result);
     }
@@ -78,7 +81,7 @@ public class ${className}Controller extends BaseController {
     @RequiresPermissions("${moduleName}:${pathName}:delete")
     @ApiOperation(httpMethod = "POST", value = "删除${className} 信息")
     public BaseWrapper delete${className}ById(@PathVariable Long id) {
-        boolean result = ${classname}Service.removeById(id);
+        boolean result = ${classObjectName}Service.removeById(id);
 
         return super.handleResult(result);
     }
@@ -87,7 +90,7 @@ public class ${className}Controller extends BaseController {
     @RequestMapping("/bathDelete")
     @RequiresPermissions("${moduleName}:${pathName}:bathDelete")
     public BaseWrapper bathDelete(@RequestBody ${pk.propertyType}[] ${pk.propertyName}s){
-        boolean result = ${classname}Service.removeByIds(Arrays.asList(${pk.propertyName}s));
+        boolean result = ${classObjectName}Service.removeByIds(Arrays.asList(${pk.propertyName}s));
 
         return super.handleResult(result);
     }

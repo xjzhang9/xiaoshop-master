@@ -3,20 +3,23 @@ package com.xjzhang.generator.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.common.BaseController;
-import com.xjzhang.common.dto.QueryDto;
+import com.xjzhang.common.model.QueryDto;
 import com.xjzhang.common.wrapper.BaseWrapper;
 import com.xjzhang.common.wrapper.ResWrapper;
 import com.xjzhang.generator.model.TableInfo;
 import com.xjzhang.generator.service.GeneratorService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,7 +49,15 @@ public class GeneratorController extends BaseController {
     }
 
     @RequestMapping("code")
-    public BaseWrapper code(@RequestBody List<String> tableNameList, HttpServletResponse response) {
-       return null;
+    public BaseWrapper code(@RequestBody List<String> tableNameList, HttpServletResponse response) throws IOException {
+        Assert.isTrue(tableNameList != null && tableNameList.size() > 0 , "选择生成的表为空");
+
+        byte[] codeByte = generatorService.codeGenerator(tableNameList);
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=\"xiaoshopCode.zip\"");
+        response.addHeader("Content-Length", "" + codeByte.length);
+        IOUtils.write(codeByte, response.getOutputStream());
+
+        return ResWrapper.ok();
     }
 }

@@ -42,5 +42,5 @@ public interface GeneratorService {
      * @param tableNameList
      * @return
      */
-    Boolean codeGenerator(List<String> tableNameList);
+    byte[] codeGenerator(List<String> tableNameList);
 }

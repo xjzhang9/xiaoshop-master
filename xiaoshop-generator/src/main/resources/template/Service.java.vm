@@ -11,8 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @email ${email}
  * @date ${datetime}
  */
-
-@RestController
-@RequestMapping("${moduleName}/${pathName}")
-public class ${className}Service extends IService<$className> {
+public interface ${className}Service extends IService<$className> {
 }

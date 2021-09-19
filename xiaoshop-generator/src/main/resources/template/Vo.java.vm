@@ -8,9 +8,12 @@
 
 @Data
 public class ${className}Vo implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
-    #foreach($column in $columns)
-        private $column.propertyType $column.propertyName
-    #end
+#foreach($column in $columns)
+    /**
+    *  ${column.columnComment}
+    */
+    private $column.propertyType $column.propertyObjectName;
+#end
 }

@@ -46,6 +46,7 @@
         <lombok-version>1.16.18</lombok-version>
         <commons.lang.version>3.5</commons.lang.version>
         <jackson-version>2.12.3</jackson-version>
+        <spring-context.version>5.3.8</spring-context.version>
     </properties>
 
     <dependencyManagement>
@@ -127,6 +128,13 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-context.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

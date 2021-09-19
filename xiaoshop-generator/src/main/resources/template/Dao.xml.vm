@@ -3,7 +3,7 @@
 <mapper namespace="${package}.${moduleName}.${className}Dao">
   <resultMap id="${className}Map" type="${package}.${moduleName}.model.${className}">
       #foreach($column in $columns)
-      <result property = "${column.propertyName}" column="${column.columnName}"
+      <result property = "${column.propertyObjectName}" column="${column.columnName}"/>
       #end
   </resultMap>
 </mapper>

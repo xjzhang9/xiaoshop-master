@@ -1,10 +1,9 @@
 package com.xjzhang.common;
 
-import com.xjzhang.common.dto.LoginUserDto;
+import com.xjzhang.common.model.LoginUserDto;
 import com.xjzhang.common.wrapper.BaseWrapper;
 import com.xjzhang.common.wrapper.ResWrapper;
 import com.xjzhang.utils.EmptyUtil;
-
 /**
  * 控制器基础类
  *
@@ -69,5 +68,4 @@ public class BaseController {
     protected long generateId() {
         return -1;
     }
-
 }

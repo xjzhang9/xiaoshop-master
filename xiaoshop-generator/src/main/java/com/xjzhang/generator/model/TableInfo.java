@@ -34,6 +34,9 @@ public class TableInfo {
     @JsonIgnore
     private String className;
 
+    @JsonIgnore
+    private String classObjectName;
+
     /**
      * 创建时间
      */

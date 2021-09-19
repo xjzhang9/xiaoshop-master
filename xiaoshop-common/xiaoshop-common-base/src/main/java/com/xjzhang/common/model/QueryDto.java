@@ -1,4 +1,4 @@
-package com.xjzhang.common.dto;
+package com.xjzhang.common.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

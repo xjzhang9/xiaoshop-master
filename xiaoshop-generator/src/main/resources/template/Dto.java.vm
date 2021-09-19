@@ -14,12 +14,12 @@ import java.io.Serializable;
 
 @Data
 public class ${className}Dto implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
-    #foreach($column in $columns)
-        #if($column.columnName == $pk.columnName)
-        @TableId
-        #end
-    private $column.propertyType $column.propertyName
-    #end
+#foreach($column in $columns)
+    /**
+     *  ${column.columnComment}
+     */
+    private $column.propertyType $column.propertyObjectName;
+#end
 }

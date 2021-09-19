@@ -1,4 +1,4 @@
-package com.xjzhang.generator.auth;
+package com.xjzhang.auth;
 
 import cn.dev33.satoken.SaManager;
 import org.springframework.boot.SpringApplication;

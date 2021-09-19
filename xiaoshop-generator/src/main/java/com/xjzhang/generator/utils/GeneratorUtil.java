@@ -35,17 +35,20 @@ public class GeneratorUtil {
      *
      * @return
      */
-    public List<String> getCodeTemplateList() {
+    public static List<String> getCodeTemplateList() {
         List<String> templatList = new ArrayList<>();
-        templatList.add("Controller.java.vm");
-        templatList.add("Dao.java.vm");
-        templatList.add("Dao.xml.vm");
-        templatList.add("Entity.java.vm");
-        templatList.add("list.html.vm");
-        templatList.add("list.js.vm");
-        templatList.add("menu.sql.vm");
-        templatList.add("Service.java.vm");
-        templatList.add("ServiceImpl.java.vm");
+        templatList.add("template/Controller.java.vm");
+        templatList.add("template/Dao.java.vm");
+        templatList.add("template/Dao.xml.vm");
+        templatList.add("template/Entity.java.vm");
+//        templatList.add("template/list.html.vm");
+//        templatList.add("template/list.js.vm");
+//        templatList.add("template/menu.sql.vm");
+        templatList.add("template/Service.java.vm");
+        templatList.add("template/ServiceImpl.java.vm");
+        templatList.add("template/Vo.java.vm");
+        templatList.add("template/Dto.java.vm");
+        templatList.add("template/BeanCopy.java.vm");
 
         return templatList;
     }
@@ -58,17 +61,21 @@ public class GeneratorUtil {
         }
     }
 
-    public void generatorCode(TableInfo tableInfo, List<ColumnInfo> columnInfoList, ZipOutputStream zip) {
+    public static void generatorCode(TableInfo tableInfo, List<ColumnInfo> columnInfoList, ZipOutputStream zip) {
         Configuration config = getConfig();
 
-        String className = DbNameToJava(tableInfo.getTableName());
+        // 表名转换为java类名
+        String className = tableToJava(tableInfo.getTableName(), config.getString("tablePrefix"));
         tableInfo.setClassName(className);
+        tableInfo.setClassObjectName(StringUtils.uncapitalize(className));
 
         final boolean[] hasBigDecimal = {false};
 
         columnInfoList.stream().map(columnInfo -> {
             // 列名转换为java属性名
-            columnInfo.setPropertyName(DbNameToJava(columnInfo.getColumnName()));
+            String propertyName = DbNameToJava(columnInfo.getColumnName());
+            columnInfo.setPropertyName(propertyName);
+            columnInfo.setPropertyObjectName(StringUtils.uncapitalize(propertyName));
 
             // 列属性转换为java属性类型
             String propertyType = config.getString(columnInfo.getDataType(), "unKnowType");
@@ -95,7 +102,7 @@ public class GeneratorUtil {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
 
-        String mainPath = config.getString("main.path");
+        String mainPath = config.getString("mainPath");
         mainPath = StringUtils.isBlank(mainPath) ? "com.xjzhang" : mainPath;
 
         // 封装模板数据
@@ -104,11 +111,12 @@ public class GeneratorUtil {
         map.put("comments", tableInfo.getTableComment());
         map.put("pk", tableInfo.getPk());
         map.put("className", tableInfo.getClassName());
+        map.put("classObjectName", tableInfo.getClassObjectName());
         map.put("pathName", tableInfo.getClassName().toLowerCase());
         map.put("columns", tableInfo.getColumnInfoList());
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("mainPath", mainPath);
-        map.put("packageName", config.getString("package"));
+        map.put("package", config.getString("package"));
         map.put("moduleName", config.getString("moduleName"));
         map.put("author", config.getString("author"));
         map.put("email", config.getString("email"));
@@ -135,12 +143,23 @@ public class GeneratorUtil {
 
 
     /**
+     * 表名转换成Java类名
+     */
+    public static String tableToJava(String tableName, String tablePrefix) {
+        if(org.apache.commons.lang.StringUtils.isNotBlank(tablePrefix)){
+            tableName = tableName.replace(tablePrefix, "");
+        }
+        return DbNameToJava(tableName);
+    }
+
+
+    /**
      * 数据库里面的表名或者列明转换为Java 的驼峰命名法
      *
      * @param name
      * @return
      */
-    public String DbNameToJava(String name) {
+    public static String DbNameToJava(String name) {
         return WordUtils.capitalizeFully(name, new char[]{'_'}).replace("_", "");
     }
 
@@ -153,7 +172,7 @@ public class GeneratorUtil {
      * @param moduleName
      * @return
      */
-    public String getTemplatePath(String template, String className, String packageName, String moduleName) {
+    public static String getTemplatePath(String template, String className, String packageName, String moduleName) {
         String packagePath = "main" + File.separator + "java" + File.separator;
         if (StringUtils.isNoneBlank(packageName)) {
             packagePath += packageName.replace(".", File.separator) + File.separator + moduleName + File.separator;
@@ -172,7 +191,15 @@ public class GeneratorUtil {
         }
 
         if (template.contains("Entity.java.vm")) {
-            return packagePath + "model" + File.separator + className + "Entity.java";
+            return packagePath + "model" + File.separator + className + ".java";
+        }
+
+        if (template.contains("Dto.java.vm")) {
+            return packagePath + "model" + File.separator + className + "Dto.java";
+        }
+
+        if (template.contains("Vo.java.vm")) {
+            return packagePath + "model" + File.separator + className + "Vo.java";
         }
 
         if (template.contains("Service.java.vm")) {
@@ -183,12 +210,10 @@ public class GeneratorUtil {
             return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
         }
 
-        if (template.contains("menu.sql.vm")) {
-            return className.toLowerCase() + "_menu.sql";
+        if (template.contains("BeanCopy.java.vm")) {
+            return packagePath + "convert" + File.separator  + className + "Convert.java";
         }
 
         return null;
     }
-
-
 }
