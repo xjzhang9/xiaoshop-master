@@ -2,36 +2,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.xjzhang.xiaoshop</groupId>
-    <artifactId>xiaoshop-master</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>xiaoshop-master</name>
-    <description>聚合工程</description>
-    <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.8.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.xjzhang.xiaoshop</groupId>
+    <artifactId>xiaoshop-master</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <description>聚合工程</description>
+    <packaging>pom</packaging>
 
     <modules>
         <module>xiaoshop-common</module>
         <module>xiaoshop-product</module>
-        <module>xiaoshop-cart</module>
-        <module>xiaoshop-order</module>
+        <!--        <module>xiaoshop-cart</module>-->
+        <!--        <module>xiaoshop-order</module>-->
         <module>xiaoshop-auth</module>
-        <module>xiaoshop-ware</module>
-        <module>xiaoshop-search</module>
-        <module>xiaoshop-seckill</module>
-        <module>xiaoshop-member</module>
-        <module>xiaoshop-coupon</module>
-        <module>xiaoshop-gateway</module>
-        <module>xiaoshop-pay</module>
-        <module>xiaoshop-backsys</module>
-        <module>xiaoshop-generator</module>
+        <!--        <module>xiaoshop-ware</module>-->
+        <!--        <module>xiaoshop-search</module>-->
+        <!--        <module>xiaoshop-seckill</module>-->
+        <!--        <module>xiaoshop-member</module>-->
+        <!--        <module>xiaoshop-coupon</module>-->
+        <!--        <module>xiaoshop-gateway</module>-->
+        <!--        <module>xiaoshop-pay</module>-->
+        <!--        <module>xiaoshop-backsys</module>-->
+        <!--        <module>xiaoshop-generator</module>-->
         <module>xiaoshop-dependency</module>
     </modules>
 
@@ -40,13 +39,16 @@
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
-        <druid.version>1.0.28</druid.version>
         <mysql.version>8.0.16</mysql.version>
         <common-version>1.0-SNAPSHOT</common-version>
         <lombok-version>1.16.18</lombok-version>
         <commons.lang.version>3.5</commons.lang.version>
         <jackson-version>2.12.3</jackson-version>
         <spring-context.version>5.3.8</spring-context.version>
+        <jwt.version>3.2.0</jwt.version>
+        <shiro.version>1.6.0</shiro.version>
+        <shiro.spring.version>1.4.0</shiro.spring.version>
+        <fastjson.version>1.2.72</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -56,27 +58,45 @@
                 <artifactId>xiaoshop-common-base</artifactId>
                 <version>${common-version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.xjzhang.xiaoshop.common</groupId>
                 <artifactId>xiaoshop-common-config</artifactId>
                 <version>${common-version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.xjzhang.xiaoshop.common</groupId>
                 <artifactId>xiaoshop-common-utils</artifactId>
                 <version>${common-version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.xjzhang.xiaoshop.common</groupId>
                 <artifactId>xiaoshop-common-core</artifactId>
                 <version>${common-version}</version>
             </dependency>
-            <!-- druid线程池 -->
+
+            <!--JWT-->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <!-- shiro -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.spring.version}</version>
+            </dependency>
+
             <!-- lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -90,6 +110,7 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+
             <!-- mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -102,6 +123,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
@@ -117,6 +139,13 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson-version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -131,6 +160,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>

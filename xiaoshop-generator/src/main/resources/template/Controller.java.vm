@@ -25,60 +25,66 @@ import ${package}.${moduleName}.model.${className}Vo;
  * @email ${email}
  * @date ${datetime}
  */
-
 @RestController
 @RequestMapping(value = "${moduleName}/${pathName}", , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-@Api(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "${comments}管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ${className}Controller extends BaseController {
     @Autowired
     private ${className}Service ${classObjectName}Service;
 
-
+    /**
+     * 查询${comments}
+     */
     @ApiOperation(httpMethod = "POST", value = "分页查询 ${className} 信息")
     @RequestMapping("/query${className}WithPage")
-    @RequiresPermissions("${moduleName}:${pathName}:list")
     public BaseWrapper<IPage<${className}Vo>> query${className}WithPage(@RequestBody ${className}Dto  ${classObjectName}Dto) {
-        Page<${className}Dto> queryDtoPage = new Page(${classObjectName}Dto.getPageIndex(), ${classObjectName}Dto.getPageSize());
+        Page<${className}> queryDtoPage = new Page(${classObjectName}Dto.getPageIndex(), ${classObjectName}Dto.getPageSize());
         IPage<${className}> tablePage = ${classObjectName}Service.page(queryDtoPage);
         IPage<${className}Vo> voIPage = ${className}Convert.entity2VoPage(tablePage);
+
         return ResWrapper.ok(voIPage);
     }
 
+    /**
+     * 根据id获得${comments}
+     */
     @ApiOperation(httpMethod = "POST", value = "获取 ${className} 信息")
     @RequestMapping("/get${className}ById")
-    @RequiresPermissions("${moduleName}:${pathName}:info")
     public BaseWrapper get${className}ById(@PathVariable Long id) {
         ${className} ${classObjectName} = ${classObjectName}Service.getById(id);
-        ${className}Vo ${classObjectName}Vo = new  ${className}Vo();
         ${className}Vo ${classObjectName}Vo=  ${className}Convert.entity2Vo(${classObjectName});
+
         return ResWrapper.ok(${classObjectName}Vo);
     }
 
+    /**
+     * 保存${comments}
+     */
     @PostMapping("/save${className}")
-    @RequiresPermissions("${moduleName}:${pathName}:save")
     @ApiOperation(httpMethod = "POST", value = "保存 ${className} 信息")
     public BaseWrapper save${className} (@RequestBody ${className}Dto  ${classObjectName}Dto) {
-        ${className} ${classObjectName} = new  ${className}();
         ${className} ${classObjectName} = ${className}Convert.dto2Entity(${classObjectName}Dto);
         boolean result = ${classObjectName}Service.save(${classObjectName});
 
-        result super.handleResult(result);
+        return super.handleResult(result);
     }
 
-
+    /**
+     * 更新${comments}
+     */
     @PostMapping("/update${className}ById")
-    @RequiresPermissions("${moduleName}:${pathName}:update")
     @ApiOperation(httpMethod = "POST", value = "更新${className} 信息")
     public BaseWrapper update${className}ById (@RequestBody ${className}Dto  ${classObjectName}Dto) {
-        ${className} ${classObjectName} = new  ${className}();
         ${className} ${classObjectName} = ${className}Convert.dto2Entity(${classObjectName}Dto);
         boolean result =  ${classObjectName}Service.updateById(${classObjectName});
 
-        result super.handleResult(result);
+        return super.handleResult(result);
     }
 
+    /**
+     * 根据id删除${comments}
+     */
     @PostMapping("/delete${className}ById/{id}")
-    @RequiresPermissions("${moduleName}:${pathName}:delete")
     @ApiOperation(httpMethod = "POST", value = "删除${className} 信息")
     public BaseWrapper delete${className}ById(@PathVariable Long id) {
         boolean result = ${classObjectName}Service.removeById(id);
@@ -86,13 +92,14 @@ public class ${className}Controller extends BaseController {
         return super.handleResult(result);
     }
 
+    /**
+     * 批量删除${comments}
+     */
     @ApiOperation(httpMethod = "POST", value = "批量删除${className} 信息")
     @RequestMapping("/bathDelete")
-    @RequiresPermissions("${moduleName}:${pathName}:bathDelete")
     public BaseWrapper bathDelete(@RequestBody ${pk.propertyType}[] ${pk.propertyName}s){
         boolean result = ${classObjectName}Service.removeByIds(Arrays.asList(${pk.propertyName}s));
 
         return super.handleResult(result);
     }
-
 }

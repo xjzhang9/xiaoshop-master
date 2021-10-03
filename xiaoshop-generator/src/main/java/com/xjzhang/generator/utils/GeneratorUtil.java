@@ -3,7 +3,8 @@ package com.xjzhang.generator.utils;
 import com.xjzhang.common.exception.BusinessException;
 import com.xjzhang.generator.model.ColumnInfo;
 import com.xjzhang.generator.model.TableInfo;
-import com.xjzhang.utils.DateUtils;
+import com.xjzhang.utils.DateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -29,6 +30,7 @@ import java.util.zip.ZipOutputStream;
  * @version 1.0
  * @date 2021/9/4 11:29
  */
+@Slf4j
 public class GeneratorUtil {
     /**
      * 获得
@@ -120,7 +122,7 @@ public class GeneratorUtil {
         map.put("moduleName", config.getString("moduleName"));
         map.put("author", config.getString("author"));
         map.put("email", config.getString("email"));
-        map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_FORMAT));
+        map.put("datetime", DateUtil.format(new Date(), DateUtil.DATE_TIME_FORMAT));
 
         VelocityContext context = new VelocityContext(map);
         List<String> templateList = getCodeTemplateList();
@@ -136,7 +138,7 @@ public class GeneratorUtil {
                 IOUtils.closeQuietly(stringWriter);
                 zip.closeEntry();
             } catch (IOException e) {
-                throw new BusinessException("渲染模板失败，表名：" + tableInfo.getTableName(), e);
+               log.error("渲染模板失败，表名：" + tableInfo.getTableName(), e);
             }
         });
     }

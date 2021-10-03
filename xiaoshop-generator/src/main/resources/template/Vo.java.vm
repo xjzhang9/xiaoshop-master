@@ -5,11 +5,9 @@
  * @email ${email}
  * @date ${datetime}
  */
-
 @Data
-public class ${className}Vo implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@EqualsAndHashCode()
+public class ${className}Vo extends BaseVo {
 #foreach($column in $columns)
     /**
     *  ${column.columnComment}

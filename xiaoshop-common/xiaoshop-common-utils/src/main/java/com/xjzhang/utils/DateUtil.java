@@ -9,7 +9,7 @@ import java.util.Date;
  * @version 1.0
  * @date 2021/9/5 10:34
  */
-public class DateUtils {
+public class DateUtil {
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 

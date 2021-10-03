@@ -11,11 +11,10 @@ import java.io.Serializable;
  * @email ${email}
  * @date ${datetime}
  */
-
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class ${className}Dto implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@ApiModel(value = "${comments}Dto")
+public class ${className}Dto extends QueryDto {
 #foreach($column in $columns)
     /**
      *  ${column.columnComment}

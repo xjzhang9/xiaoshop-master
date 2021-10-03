@@ -1,22 +1,9 @@
 package com.xjzhang.sys.user.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.BaseController;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.ArrayList;
-
 import com.xjzhang.sys.user.model.UserDto;
 import com.xjzhang.sys.user.model.UserVo;
 import com.xjzhang.sys.user.model.User;
@@ -32,14 +19,15 @@ import com.xjzhang.sys.user.model.User;
 public class UserConvert {
 
     /**
-    * entity -> vo
-    * @return
-    */
-    public static  UserVo entity2Vo(User user) {
-        if (user ==null){
+     * entity -> vo
+     *
+     * @return
+     */
+    public static UserVo entity2Vo(User user) {
+        if (user == null) {
             return null;
         }
-            UserVo  userVo = new  UserVo();
+        UserVo userVo = new UserVo();
         BeanUtils.copyProperties(user, userVo);
 
         return userVo;
@@ -47,21 +35,23 @@ public class UserConvert {
 
     /**
      * dto -> entity
+     *
      * @return
      */
     public static User dto2Entity(UserDto userDto) {
         if (userDto == null) {
             return null;
         }
-        User  user =new  User();
-        BeanUtils.copyProperties(userDto,  user);
+        User user = new User();
+        BeanUtils.copyProperties(userDto, user);
 
-        return  user;
+        return user;
     }
 
 
     /**
      * entityList -> VoList
+     *
      * @return
      */
     public static List<UserVo> entity2VoList(List<User> list) {
@@ -69,8 +59,8 @@ public class UserConvert {
             return null;
         }
         List<UserVo> listVo = new ArrayList<UserVo>();
-        for (User item:
-                          list) {
+        for (User item :
+                list) {
             listVo.add(entity2Vo(item));
         }
         return listVo;
@@ -78,28 +68,30 @@ public class UserConvert {
 
 
     /**
-   * dtoList -> EntityList
-   * @return
-   */
-    public static List<UserDo> dto2EntityList(List<UserDto> list) {
+     * dtoList -> EntityList
+     *
+     * @return
+     */
+    public static List<User> dto2EntityList(List<UserDto> list) {
         if (list == null || list.size() <= 0) {
             return null;
         }
-        List<UserDo> listDo = new ArrayList<UserDo>();
+        List<User> listDo = new ArrayList<User>();
         for (UserDto dto : list) {
-            listDo.add(dto2Do(dto));
+            listDo.add(dto2Entity(dto));
         }
         return listDo;
     }
 
     /**
-      * entityPage -> VoPage
-      * @return
-    */
+     * entityPage -> VoPage
+     *
+     * @return
+     */
     public static IPage<UserVo> entity2VoPage(IPage<User> page) {
         IPage<UserVo> vs = page.convert(item -> {
             try {
-                return entity2Vo(item)
+                return entity2Vo(item);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -107,5 +99,4 @@ public class UserConvert {
         });
         return vs;
     }
-}
 }

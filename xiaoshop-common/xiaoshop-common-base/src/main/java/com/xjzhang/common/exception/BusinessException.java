@@ -10,7 +10,7 @@ import com.xjzhang.common.enums.ErrorCodeEnum;
  * @date 2021/7/12 20:43
  */
 public class BusinessException extends RuntimeException {
-    private int code;
+    protected int code;
 
     public BusinessException() {}
 

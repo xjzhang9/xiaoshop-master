@@ -2,6 +2,7 @@ package com.xjzhang.sys.user.model;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.xjzhang.common.model.QueryDto;
 import lombok.Data;
 import org.hibernate.validator.internal.util.logging.Log_$logger;
 
@@ -17,9 +18,7 @@ import java.util.Date;
  */
 
 @Data
-public class UserDto implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class UserDto extends QueryDto {
     /**
      *  用户id
      */

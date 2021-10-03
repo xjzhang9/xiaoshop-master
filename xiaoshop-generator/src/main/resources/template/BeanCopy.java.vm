@@ -2,21 +2,9 @@ package ${package}.${moduleName}.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.BaseController;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.ArrayList;
-
 import ${package}.${moduleName}.model.${className}Dto;
 import ${package}.${moduleName}.model.${className}Vo;
 import ${package}.${moduleName}.model.${className};
@@ -81,15 +69,15 @@ public class ${className}Convert {
    * dtoList -> EntityList
    * @return
    */
-    public static List<${className}Do> dto2EntityList(List<${className}Dto> list) {
+    public static List<${className}> dto2EntityList(List<${className}Dto> list) {
         if (list == null || list.size() <= 0) {
             return null;
         }
-        List<${className}Do> listDo = new ArrayList<${className}Do>();
+        List<${className}> listEntity = new ArrayList<${className}Do>();
         for (${className}Dto dto : list) {
-            listDo.add(dto2Do(dto));
+            listEntity.add(dto2Entity(dto));
         }
-        return listDo;
+        return listEntity;
     }
 
     /**
@@ -107,5 +95,4 @@ public class ${className}Convert {
         });
         return vs;
     }
-}
 }
