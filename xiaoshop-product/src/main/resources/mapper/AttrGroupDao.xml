@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.AttrGroupDao">
+  <resultMap id="AttrGroupMap" type="com.xjzhang.pro.model.entity.AttrGroup">
+            <result property = "attrGroupId" column="attr_group_id"/>
+            <result property = "attrGroupName" column="attr_group_name"/>
+            <result property = "catelogId" column="catelog_id"/>
+            <result property = "descript" column="descript"/>
+            <result property = "icon" column="icon"/>
+            <result property = "sort" column="sort"/>
+        </resultMap>
+</mapper>

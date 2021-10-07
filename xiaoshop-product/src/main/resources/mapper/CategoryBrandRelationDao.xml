@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.CategoryBrandRelationDao">
+  <resultMap id="CategoryBrandRelationMap" type="com.xjzhang.pro.model.entity.CategoryBrandRelation">
+            <result property = "brandId" column="brand_id"/>
+            <result property = "brandName" column="brand_name"/>
+            <result property = "catelogId" column="catelog_id"/>
+            <result property = "catelogName" column="catelog_name"/>
+            <result property = "id" column="id"/>
+        </resultMap>
+</mapper>

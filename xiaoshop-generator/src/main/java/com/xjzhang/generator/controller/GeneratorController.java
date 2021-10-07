@@ -2,10 +2,10 @@ package com.xjzhang.generator.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.BaseController;
-import com.xjzhang.common.model.QueryDto;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
+import com.xjzhang.base.BaseController;
+import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.wrapper.BaseWrapper;
+import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.generator.model.TableInfo;
 import com.xjzhang.generator.service.GeneratorService;
 import io.swagger.annotations.Api;

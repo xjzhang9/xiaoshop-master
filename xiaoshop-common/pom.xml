@@ -15,7 +15,6 @@
 
     <modules>
         <module>xiaoshop-common-base</module>
-        <module>xiaoshop-common-utils</module>
         <module>xiaoshop-common-config</module>
         <module>xiaoshop-common-redis</module>
         <module>xiaoshop-common-core</module>

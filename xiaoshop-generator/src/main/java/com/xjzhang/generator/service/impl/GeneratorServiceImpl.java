@@ -2,7 +2,6 @@ package com.xjzhang.generator.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.exception.BusinessException;
 import com.xjzhang.generator.dao.MySqlGeneratorDao;
 import com.xjzhang.generator.model.ColumnInfo;
 import com.xjzhang.generator.model.TableInfo;
@@ -11,7 +10,6 @@ import com.xjzhang.generator.utils.GeneratorUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;

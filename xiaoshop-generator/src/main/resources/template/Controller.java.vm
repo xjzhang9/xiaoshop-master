@@ -2,18 +2,15 @@ package ${package}.${moduleName}.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.BaseController;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
+import com.xjzhang.base.BaseController;
+import com.xjzhang.base.wrapper.BaseWrapper;
+import com.xjzhang.base.wrapper.ResWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-import java.util.Array;
+import java.util.Arrays;
 import ${package}.${moduleName}.service.${className}Service;
 import ${package}.${moduleName}.model.${className}Dto;
 import ${package}.${moduleName}.model.${className}Vo;
@@ -26,7 +23,7 @@ import ${package}.${moduleName}.model.${className}Vo;
  * @date ${datetime}
  */
 @RestController
-@RequestMapping(value = "${moduleName}/${pathName}", , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "${moduleName}/${pathName}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "${comments}管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ${className}Controller extends BaseController {
     @Autowired

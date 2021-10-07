@@ -1,7 +1,7 @@
 package com.xjzhang.exception;
 
-import com.xjzhang.common.enums.ErrorCodeEnum;
-import com.xjzhang.common.exception.BusinessException;
+import com.xjzhang.base.enums.ErrorCodeEnum;
+import com.xjzhang.base.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 
 /**

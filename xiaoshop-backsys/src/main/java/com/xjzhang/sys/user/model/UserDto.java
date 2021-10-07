@@ -1,12 +1,8 @@
 package com.xjzhang.sys.user.model;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.xjzhang.common.model.QueryDto;
+import com.xjzhang.base.model.QueryDto;
 import lombok.Data;
-import org.hibernate.validator.internal.util.logging.Log_$logger;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**

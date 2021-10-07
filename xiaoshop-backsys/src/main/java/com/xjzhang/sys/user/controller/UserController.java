@@ -2,9 +2,9 @@ package com.xjzhang.sys.user.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xjzhang.common.BaseController;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
+import com.xjzhang.base.BaseController;
+import com.xjzhang.base.wrapper.BaseWrapper;
+import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.sys.user.convert.UserConvert;
 import com.xjzhang.sys.user.model.User;
 import io.swagger.annotations.Api;

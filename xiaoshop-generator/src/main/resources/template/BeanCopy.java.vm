@@ -1,7 +1,6 @@
 package ${package}.${moduleName}.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
@@ -73,7 +72,7 @@ public class ${className}Convert {
         if (list == null || list.size() <= 0) {
             return null;
         }
-        List<${className}> listEntity = new ArrayList<${className}Do>();
+        List<${className}> listEntity = new ArrayList<${className}>();
         for (${className}Dto dto : list) {
             listEntity.add(dto2Entity(dto));
         }
@@ -87,7 +86,7 @@ public class ${className}Convert {
     public static IPage<${className}Vo> entity2VoPage(IPage<${className}> page) {
         IPage<${className}Vo> vs = page.convert(item -> {
             try {
-                return entity2Vo(item)
+                return entity2Vo(item);
             } catch (Exception e) {
                 e.printStackTrace();
             }

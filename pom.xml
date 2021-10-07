@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>com.xjzhang.xiaoshop</groupId>
     <artifactId>xiaoshop-master</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -27,10 +27,10 @@
         <!--        <module>xiaoshop-seckill</module>-->
         <!--        <module>xiaoshop-member</module>-->
         <!--        <module>xiaoshop-coupon</module>-->
-        <!--        <module>xiaoshop-gateway</module>-->
+        <module>xiaoshop-gateway</module>
         <!--        <module>xiaoshop-pay</module>-->
-        <!--        <module>xiaoshop-backsys</module>-->
-        <!--        <module>xiaoshop-generator</module>-->
+        <module>xiaoshop-backsys</module>
+        <module>xiaoshop-generator</module>
         <module>xiaoshop-dependency</module>
     </modules>
 
@@ -49,6 +49,8 @@
         <shiro.version>1.6.0</shiro.version>
         <shiro.spring.version>1.4.0</shiro.spring.version>
         <fastjson.version>1.2.72</fastjson.version>
+        <guava.version>29.0-jre</guava.version>
+
     </properties>
 
     <dependencyManagement>
@@ -62,12 +64,6 @@
             <dependency>
                 <groupId>com.xjzhang.xiaoshop.common</groupId>
                 <artifactId>xiaoshop-common-config</artifactId>
-                <version>${common-version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.xjzhang.xiaoshop.common</groupId>
-                <artifactId>xiaoshop-common-utils</artifactId>
                 <version>${common-version}</version>
             </dependency>
 
@@ -144,6 +140,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
             <dependency>

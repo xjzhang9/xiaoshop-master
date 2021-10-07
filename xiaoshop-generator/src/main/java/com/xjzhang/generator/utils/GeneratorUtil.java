@@ -1,9 +1,9 @@
 package com.xjzhang.generator.utils;
 
-import com.xjzhang.common.exception.BusinessException;
+import com.xjzhang.base.exception.BusinessException;
+import com.xjzhang.base.utils.DateUtil;
 import com.xjzhang.generator.model.ColumnInfo;
 import com.xjzhang.generator.model.TableInfo;
-import com.xjzhang.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -189,7 +188,7 @@ public class GeneratorUtil {
         }
 
         if (template.contains("Dao.xml.vm")) {
-            return packagePath + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Dao.xml";
+            return packagePath + "resources" + File.separator + "mapper"  + File.separator + className + "Mapper.xml";
         }
 
         if (template.contains("Entity.java.vm")) {

@@ -1,14 +1,14 @@
 package com.xjzhang.auth.controller;
 
-import com.xjzhang.common.constant.RedisConstant;
-import com.xjzhang.common.wrapper.BaseWrapper;
-import com.xjzhang.common.wrapper.ResWrapper;
-import com.xjzhang.utils.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xjzhang.base.constant.RedisConstant;
+import com.xjzhang.base.utils.JwtUtil;
+import com.xjzhang.base.wrapper.BaseWrapper;
+import com.xjzhang.base.wrapper.ResWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/xiaoshop/auth/")
 public class LoginController {
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
     @Value("${config.refreshTokenExpireTime}")

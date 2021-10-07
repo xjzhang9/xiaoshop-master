@@ -1,9 +1,7 @@
 package com.xjzhang.shiro;
 
 
-import com.xjzhang.common.constant.RedisConstant;
-import com.xjzhang.common.enums.ErrorCodeEnum;
-import com.xjzhang.exception.AuthBizExecption;
+import com.xjzhang.base.constant.RedisConstant;
 import com.xjzhang.utils.JwtToken;
 import com.xjzhang.utils.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +10,6 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;

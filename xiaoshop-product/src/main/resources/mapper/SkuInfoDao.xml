@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.SkuInfoDao">
+  <resultMap id="SkuInfoMap" type="com.xjzhang.pro.model.entity.SkuInfo">
+            <result property = "brandId" column="brand_id"/>
+            <result property = "catalogId" column="catalog_id"/>
+            <result property = "price" column="price"/>
+            <result property = "saleCount" column="sale_count"/>
+            <result property = "skuDefaultImg" column="sku_default_img"/>
+            <result property = "skuDesc" column="sku_desc"/>
+            <result property = "skuId" column="sku_id"/>
+            <result property = "skuName" column="sku_name"/>
+            <result property = "skuSubtitle" column="sku_subtitle"/>
+            <result property = "skuTitle" column="sku_title"/>
+            <result property = "spuId" column="spu_id"/>
+        </resultMap>
+</mapper>

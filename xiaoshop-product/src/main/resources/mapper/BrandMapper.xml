@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.dao.BrandDao">
+    <resultMap id="BrandMap" type="com.xjzhang.pro.model.entity.Brand">
+        <result property="brandId" column="brand_id"/>
+        <result property="descript" column="descript"/>
+        <result property="firstLetter" column="first_letter"/>
+        <result property="logo" column="logo"/>
+        <result property="name" column="name"/>
+        <result property="showStatus" column="show_status"/>
+        <result property="sort" column="sort"/>
+    </resultMap>
+
+    <sql id="Base_OrderBy_Condition">
+        <if test="orderBy != null and orderBy !=''">
+            ORDER BY ${orderBy}
+        </if>
+    </sql>
+    <sql id="Base_Column_List">
+        brand_id,
+        descript,
+        first_letter,
+        logo,
+        name,
+        show_status,
+        sort
+   </sql>
+
+    <select id="queryBrandWithPage" resultType="com.xjzhang.pro.model.vo.BrandVo">
+            selec <include refid="Base_Column_List"/>
+            from  tb_pro_brand
+            <where>
+                <if test="brandId != null and brandId != ''">
+                    brand_id = ${brandId}
+                </if>
+                <if test="name != null and name != ''">
+                    name like ${name}
+                </if>
+                <if test="showStatus != null and showStatus != ''">
+                    show_status = ${showStatus}
+                </if>
+            </where>
+
+            <include refid="Base_OrderBy_Condition"/>
+    </select>
+
+
+</mapper>
