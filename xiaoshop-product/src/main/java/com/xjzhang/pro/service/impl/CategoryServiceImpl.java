@@ -61,7 +61,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
         }
 
         Category category = CategoryConvert.dto2Entity(categoryDto);
-        category.setUpdateInfo(loginUserDto);
+//        category.setUpdateInfo(loginUserDto);
         return this.save(category);
     }
 

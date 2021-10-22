@@ -20,7 +20,7 @@ import java.util.List;
 
 @Data
 @TableName("tb_pro_category")
-public class Category extends BaseEntity {
+public class Category {
     /**
      * 分类id
      */
@@ -60,10 +60,7 @@ public class Category extends BaseEntity {
     /**
      * 是否显示[0-不显示，1显示]
      */
-    /**
-     * 是否显示[0-不显示，1显示]
-     */
-    @TableLogic(value = "1",delval = "0")
+    @TableLogic(value = "1", delval = "0")
     private Integer showStatus;
 
     /**

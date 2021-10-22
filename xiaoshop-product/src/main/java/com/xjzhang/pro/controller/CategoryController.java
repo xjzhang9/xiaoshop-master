@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.xjzhang.pro.service.CategoryService;
 import com.xjzhang.pro.model.dto.CategoryDto;
@@ -57,9 +58,9 @@ public class CategoryController extends BaseController {
     @ApiOperation(httpMethod = "POST", value = "分页查询 Category 信息")
     @RequestMapping("/tree")
     public BaseWrapper<List<Category>> queryCategoryTreeList() {
-        List<Category> tableListTree = categoryService.list();
-
-        return ResWrapper.ok(new TreeUtils().getChildTreeObjects(CategoryConvert.entity2VoList(tableListTree), 0L));
+        List<Category> tableList = categoryService.list();
+        List<Category> tableListTree = new TreeUtils().getChildTreeObjects(CategoryConvert.entity2VoList(tableList), 0L);
+        return ResWrapper.ok(tableListTree);
     }
 
     /**

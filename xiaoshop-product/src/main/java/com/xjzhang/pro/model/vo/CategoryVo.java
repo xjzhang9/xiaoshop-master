@@ -1,5 +1,7 @@
 package com.xjzhang.pro.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.xjzhang.base.model.BaseTree;
 import com.xjzhang.base.model.BaseVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,7 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode()
-public class CategoryVo extends BaseVo {
+public class CategoryVo extends BaseTree<CategoryVo, Long> {
     /**
     *  分类id
     */
@@ -53,4 +55,14 @@ public class CategoryVo extends BaseVo {
     *  排序
     */
     private Integer sort;
+
+    @Override
+    public Long getId() {
+        return this.getCatId();
+    }
+
+    @Override
+    public Long getPid() {
+        return this.getParentCid();
+    }
 }

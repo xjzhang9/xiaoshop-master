@@ -27,6 +27,9 @@ public abstract class AbstractTreeService<T extends BaseTree<T, ID>, ID extends 
 	 */
 	@Override
 	public List<T> getChildTreeObjects(List<T> list, ID parentId) {
+		if (list == null) {
+			return null;
+		}
 		List<T> returnList = Lists.newArrayList();
 		for (T res : list) {
 			if (res.getPid() == null) {

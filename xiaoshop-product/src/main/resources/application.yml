@@ -12,7 +12,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/gulimall_pms?characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/xiaoshop_pro?characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml

@@ -38,10 +38,8 @@ public class AttrGroupController extends BaseController {
     @RequestMapping("/queryAttrGroupWithPage")
     public BaseWrapper<IPage<AttrGroupVo>> queryAttrGroupWithPage(@RequestBody AttrGroupDto  attrGroupDto) {
         Page<AttrGroup> queryDtoPage = new Page(attrGroupDto.getPageIndex(), attrGroupDto.getPageSize());
-        IPage<AttrGroup> tablePage = attrGroupService.page(queryDtoPage);
-        IPage<AttrGroupVo> voIPage = AttrGroupConvert.entity2VoPage(tablePage);
-
-        return ResWrapper.ok(voIPage);
+        IPage<AttrGroupVo> tablePage = attrGroupService.queryAttrGroupWithPage(queryDtoPage, attrGroupDto);
+        return ResWrapper.ok(tablePage);
     }
 
     /**
