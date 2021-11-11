@@ -16,4 +16,6 @@ import com.xjzhang.pro.model.vo.AttrGroupVo;
  */
 public interface AttrGroupService extends IService<AttrGroup> {
     IPage<AttrGroupVo> queryAttrGroupWithPage(Page<AttrGroup> queryDtoPage, AttrGroupDto attrGroupDto);
+
+    boolean deleteAttrGroupAttrRelation(Long id);
 }

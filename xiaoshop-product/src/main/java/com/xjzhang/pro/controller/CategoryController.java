@@ -1,6 +1,7 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.model.LoginUserDto;
@@ -67,13 +68,14 @@ public class CategoryController extends BaseController {
      * 根据id获得商品三级分类
      */
     @ApiOperation(httpMethod = "POST", value = "获取 Category 信息")
-    @RequestMapping("/queryById/{id}")
+    @RequestMapping("/getCategoryById/{id}")
     public BaseWrapper getCategoryById(@PathVariable Long id) {
         log.info("根据Id查询商品分类信息, categoryId={}", id);
 
         CategoryVo categoryVo = categoryService.getCategoryById(id);
         return ResWrapper.ok(categoryVo);
     }
+
 
     /**
      * 保存商品三级分类
@@ -83,6 +85,15 @@ public class CategoryController extends BaseController {
     public BaseWrapper saveCategory(@RequestBody CategoryDto categoryDto) {
         LoginUserDto loginUserDto = getLoginUserDto();
         boolean result = categoryService.saveCategory(categoryDto, loginUserDto);
+
+        return super.handleResult(result);
+    }
+
+    @RequestMapping("/update/sort")
+    @ApiOperation(httpMethod = "POST", value = "保存 Category 信息")
+    public BaseWrapper updateSort(@RequestBody List<CategoryDto> category){
+
+        boolean result  = categoryService.updateBatchById(CategoryConvert.dto2EntityList(category));
 
         return super.handleResult(result);
     }

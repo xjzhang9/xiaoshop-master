@@ -29,7 +29,7 @@ public class BaseController {
         if (isFlag(result)) {
             return ResWrapper.ok(result);
         } else {
-            return ResWrapper.error(BaseWrapper.ERROR_CODE, BaseWrapper.ERROR_MSG, result);
+            return ResWrapper.error(BaseWrapper.ERROR_CODE, "操作失败", result);
         }
     }
 

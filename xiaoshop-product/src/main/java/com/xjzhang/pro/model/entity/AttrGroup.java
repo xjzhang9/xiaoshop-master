@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Data
 @TableName("tb_pro_attr_group")
-public class AttrGroup extends BaseEntity {
+public class AttrGroup {
     /**
     *  分组id
     */

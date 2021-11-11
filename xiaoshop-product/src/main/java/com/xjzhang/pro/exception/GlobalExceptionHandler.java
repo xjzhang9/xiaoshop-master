@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author paascloud.net @gmail.com
  */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.xjzhang.pro")
 public class GlobalExceptionHandler {
 	@Resource
 	private TaskExecutor taskExecutor;
@@ -62,7 +62,7 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	@ResponseBody
 	public BaseWrapper unAuthorizedException(AccessDeniedException e) {
-		log.error("业务异常={}", e.getMessage(), e);
+		log.error("无权限访问={}", e.getMessage(), e);
 		return ResWrapper.error(ErrorCodeEnum.GL99990001.code(), ErrorCodeEnum.GL99990001.msg());
 	}
 

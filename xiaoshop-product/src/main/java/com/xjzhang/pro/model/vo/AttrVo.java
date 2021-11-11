@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode()
-public class AttrVo extends BaseVo {
+public class AttrVo {
     /**
     *  属性id
     */
@@ -30,6 +30,12 @@ public class AttrVo extends BaseVo {
     *  所属分类
     */
     private Long catelogId;
+
+    /**
+     * 所属分类路径
+     */
+    private Long[] catelogPath;
+
     /**
     *  启用状态[0 - 禁用，1 - 启用]
     */

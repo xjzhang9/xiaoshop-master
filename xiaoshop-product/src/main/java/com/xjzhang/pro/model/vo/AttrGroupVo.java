@@ -26,6 +26,12 @@ public class AttrGroupVo extends BaseVo {
     *  所属分类id
     */
     private Long catelogId;
+
+    /**
+     * 所属分类路径
+     */
+    private Long[] catelogPath;
+
     /**
     *  描述
     */

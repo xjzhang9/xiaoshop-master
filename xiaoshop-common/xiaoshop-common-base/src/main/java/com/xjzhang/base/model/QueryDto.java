@@ -15,13 +15,11 @@ import java.io.Serializable;
 @Data
 public class QueryDto implements Serializable {
     private static final long serialVersionUID = -8140103860135939857L;
-    private int pageIndex;
-    private int pageSize;
+    private int pageIndex = 1;
+    private int pageSize = 10;
 
     /**
      * 排序字段
      */
-    private String sid;
-
     private String orderBy;
 }

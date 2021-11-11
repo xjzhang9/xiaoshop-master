@@ -3,10 +3,15 @@ package com.xjzhang.pro.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xjzhang.base.wrapper.ResWrapper;
+import com.xjzhang.pro.convert.CategoryConvert;
 import com.xjzhang.pro.dao.AttrGroupDao;
 import com.xjzhang.pro.model.dto.AttrGroupDto;
 import com.xjzhang.pro.model.entity.AttrGroup;
+import com.xjzhang.pro.model.entity.Category;
 import com.xjzhang.pro.model.vo.AttrGroupVo;
+import com.xjzhang.pro.model.vo.BrandVo;
+import com.xjzhang.pro.model.vo.CategoryVo;
 import com.xjzhang.pro.service.AttrGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +31,13 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> i
 
     @Override
     public IPage<AttrGroupVo> queryAttrGroupWithPage(Page<AttrGroup> queryDtoPage, AttrGroupDto attrGroupDto) {
-        return null;
+        IPage<AttrGroupVo> attrGroupVoIPage = attrGroupDao.queryAttrGroupWithPage(attrGroupDto, queryDtoPage);
+        return attrGroupVoIPage;
+    }
+
+    @Override
+    public boolean deleteAttrGroupAttrRelation(Long id) {
+
+        return false;
     }
 }

@@ -7,6 +7,7 @@ import com.xjzhang.pro.model.dto.BrandDto;
 import com.xjzhang.pro.model.entity.Brand;
 import com.xjzhang.pro.model.vo.BrandVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 品牌
@@ -25,5 +26,5 @@ public interface BrandDao extends BaseMapper<Brand> {
      * @param queryDtoPage
      * @return
      */
-    IPage<BrandVo> queryBrandWithPage(BrandDto brandDto, Page<Brand> queryDtoPage);
+    IPage<BrandVo> queryBrandWithPage(@Param("brandDto") BrandDto brandDto, Page<Brand> queryDtoPage);
 }

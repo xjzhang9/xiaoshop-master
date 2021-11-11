@@ -16,13 +16,13 @@ import lombok.Data;
 
 @Data
 @TableName("tb_pro_brand")
-public class Brand extends BaseEntity {
+public class Brand {
     /**
     *  品牌id
     */
         @TableId
         @TableField("brand_id")
-    private Long brandId;
+        private Long brandId;
         /**
     *  介绍
     */

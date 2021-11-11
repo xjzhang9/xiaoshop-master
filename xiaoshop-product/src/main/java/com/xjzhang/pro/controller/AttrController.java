@@ -7,6 +7,7 @@ import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.AttrConvert;
 import com.xjzhang.pro.model.entity.Attr;
+import com.xjzhang.pro.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class AttrController extends BaseController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /**
      * 查询商品属性
      */
@@ -48,12 +52,24 @@ public class AttrController extends BaseController {
      * 根据id获得商品属性
      */
     @ApiOperation(httpMethod = "POST", value = "获取 Attr 信息")
-    @RequestMapping("/getAttrById")
+    @RequestMapping("/getAttrById/{id}")
     public BaseWrapper getAttrById(@PathVariable Long id) {
         Attr attr = attrService.getById(id);
         AttrVo attrVo=  AttrConvert.entity2Vo(attr);
-
+        Long[] catelogPaths = categoryService.getCategoryPath(attrVo.getCatelogId());
+        attrVo.setCatelogPath(catelogPaths);
         return ResWrapper.ok(attrVo);
+    }
+
+
+    /**
+     * 根据id获得商品属性
+     */
+    @ApiOperation(httpMethod = "POST", value = "获取 Attr 信息")
+    @RequestMapping("/product/attr/{type}/list/{catId}")
+    public BaseWrapper getAttrByCatId(@PathVariable String type, @PathVariable Long catId, @RequestBody AttrDto attrDto) {
+        IPage<AttrVo> voIPage = attrService.getAttrByCatId(type, catId, attrDto);
+        return ResWrapper.ok(voIPage);
     }
 
     /**
@@ -76,17 +92,6 @@ public class AttrController extends BaseController {
     public BaseWrapper updateAttrById (@RequestBody AttrDto  attrDto) {
         Attr attr = AttrConvert.dto2Entity(attrDto);
         boolean result =  attrService.updateById(attr);
-
-        return super.handleResult(result);
-    }
-
-    /**
-     * 根据id删除商品属性
-     */
-    @PostMapping("/deleteAttrById/{id}")
-    @ApiOperation(httpMethod = "POST", value = "删除Attr 信息")
-    public BaseWrapper deleteAttrById(@PathVariable Long id) {
-        boolean result = attrService.removeById(id);
 
         return super.handleResult(result);
     }

@@ -16,11 +16,10 @@ import lombok.Data;
 
 @Data
 @TableName("tb_pro_attr_attrgroup_relation")
-public class AttrAttrgroupRelation extends BaseEntity {
+public class AttrAttrgroupRelation {
     /**
     *  属性分组id
     */
-        @TableId
         @TableField("attr_group_id")
     private Long attrGroupId;
         /**
@@ -37,5 +36,6 @@ public class AttrAttrgroupRelation extends BaseEntity {
     *  id
     */
         @TableField("id")
-    private Long id;
+        @TableId
+       private Long id;
     }

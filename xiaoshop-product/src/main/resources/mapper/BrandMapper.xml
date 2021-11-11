@@ -12,8 +12,8 @@
     </resultMap>
 
     <sql id="Base_OrderBy_Condition">
-        <if test="orderBy != null and orderBy !=''">
-            ORDER BY ${orderBy}
+        <if test="brandDto.orderBy != null and brandDto.orderBy !=''">
+            ORDER BY #{orderBy}
         </if>
     </sql>
     <sql id="Base_Column_List">
@@ -27,17 +27,18 @@
    </sql>
 
     <select id="queryBrandWithPage" resultType="com.xjzhang.pro.model.vo.BrandVo">
-            selec <include refid="Base_Column_List"/>
+            select <include refid="Base_Column_List"/>
             from  tb_pro_brand
             <where>
-                <if test="brandId != null and brandId != ''">
-                    brand_id = ${brandId}
+                <if test="brandDto.name != null and brandDto.name != ''">
+                    name like #{brandDto.name}
                 </if>
-                <if test="name != null and name != ''">
-                    name like ${name}
+                <if test="brandDto.showStatus != null and brandDto.showStatus != ''">
+                    show_status = #{brandDto.showStatus}
                 </if>
-                <if test="showStatus != null and showStatus != ''">
-                    show_status = ${showStatus}
+
+                <if test="brandDto.firstLetter != null and brandDto.firstLetter != ''">
+                    first_letter = #{brandDto.firstLetter}
                 </if>
             </where>
 

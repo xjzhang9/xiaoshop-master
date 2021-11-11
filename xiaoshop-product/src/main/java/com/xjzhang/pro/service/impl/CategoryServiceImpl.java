@@ -18,6 +18,10 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 商品三级分类
  *
@@ -66,7 +70,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @CacheEvict(value = "category", allEntries = true)
+//    @CacheEvict(value = "category", allEntries = true)
     @Override
     public boolean updateCategoryById(Category category) {
         this.updateById(category);
@@ -74,5 +78,23 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
             relationService.updateCategory(category);
         }
         return true;
+    }
+
+    @Override
+    public Long[] getCategoryPath(Long id) {
+        List<Long> paths = new ArrayList<>();
+        findParentPath(id, paths);
+        Collections.reverse(paths);
+        return paths.toArray(new Long[paths.size()]);
+    }
+
+    private List<Long> findParentPath(Long catelogId, List<Long> paths){
+        //1、收集当前节点id
+        paths.add(catelogId);
+        Category byId = this.getById(catelogId);
+        if(byId.getParentCid()!=0){
+            findParentPath(byId.getParentCid(),paths);
+        }
+        return paths;
     }
 }

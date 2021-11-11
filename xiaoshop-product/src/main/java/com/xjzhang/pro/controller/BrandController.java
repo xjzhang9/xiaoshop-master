@@ -52,7 +52,7 @@ public class BrandController extends BaseController {
      * 根据id获得品牌
      */
     @ApiOperation(httpMethod = "POST", value = "获取 Brand 信息")
-    @RequestMapping("/getBrandById")
+    @RequestMapping("/getBrandById/{id}")
     public BaseWrapper getBrandById(@PathVariable Long id) {
         log.info("根据Id查询商品品牌信息, brandId={}", id);
 

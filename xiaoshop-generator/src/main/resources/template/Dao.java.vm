@@ -1,4 +1,12 @@
 import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xjzhang.pro.model.dto.${className}Dto;
+import com.xjzhang.pro.model.entity.${className};
+import com.xjzhang.pro.model.vo.${className}Vo;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * ${comments}
@@ -10,5 +18,11 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface  ${className}Dao extends BaseMapper<${className}> {
-
+    /* 分页获得列表分组信息
+     *
+     * @param ${classObjectName}Dto
+     * @param queryDtoPage
+     * @return
+     */
+    IPage<${className}Vo> query${className}WithPage(@Param("${classObjectName}Dto") ${className}Dto ${classObjectName}Dto, Page<${className}> queryDtoPage);
 }

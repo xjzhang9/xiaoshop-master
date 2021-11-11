@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="${package}.${moduleName}.dao.${className}Dao">
-  <resultMap id="${className}Map" type="${package}.${moduleName}.model.${className}">
+  <resultMap id="${className}Map" type="${package}.${moduleName}.model.entity.${className}">
       #foreach($column in $columns)
       <result property = "${column.propertyObjectName}" column="${column.columnName}"/>
       #end
+  </resultMap>
+
+  <resultMap id="${className}MapVo" type="${package}.${moduleName}.model.vo.${className}Vo">
+    #foreach($column in $columns)
+        <result property = "${column.propertyObjectName}" column="${column.columnName}"/>
+    #end
   </resultMap>
   <sql id="Base_Column_List">
       #foreach($column in $columns)
          ${column.columnName},
       #end
   </sql>
+  <sql id="Base_OrderBy_Condition">
+    <if test="${className}Dto.orderBy and ${className}Dto.orderBy !=''">
+        ORDER BY #{orderBy}
+    </if>
+  </sql>
+
+    <select id="query${className}WithPage" resultMap="${className}MapVo">
+        select <include refid="Base_Column_List"/>
+        from  ${tableName}
+        <where>
+            #foreach($column in $columns)
+                <if test = "${classObjectName}Dto.${column.propertyObjectName} != null and ${classObjectName}Dto.${column.propertyObjectName} != ''">
+                    ${column.columnName} = #{${classObjectName}Dto.${column.propertyObjectName}}
+                </if>
+            #end
+        </where>
+
+        <include refid="Base_OrderBy_Condition"/>
+    </select>
 </mapper>

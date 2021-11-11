@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode()
-public class BrandVo extends BaseVo {
+public class BrandVo {
     /**
     *  品牌id
     */
@@ -38,6 +38,7 @@ public class BrandVo extends BaseVo {
     *  显示状态[0-不显示；1-显示]
     */
     private Integer showStatus;
+
     /**
     *  排序
     */

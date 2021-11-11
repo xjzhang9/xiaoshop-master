@@ -32,6 +32,7 @@
         <module>xiaoshop-backsys</module>
         <module>xiaoshop-generator</module>
         <module>xiaoshop-dependency</module>
+        <module>renren-fast</module>
     </modules>
 
     <properties>

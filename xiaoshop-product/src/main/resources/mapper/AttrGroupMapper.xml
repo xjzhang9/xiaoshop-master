@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.dao.AttrGroupDao">
+    <resultMap id="AttrGroupMap" type="com.xjzhang.pro.model.entity.AttrGroup">
+        <result property="attrGroupId" column="attr_group_id"/>
+        <result property="attrGroupName" column="attr_group_name"/>
+        <result property="catelogId" column="catelog_id"/>
+        <result property="descript" column="descript"/>
+        <result property="icon" column="icon"/>
+        <result property="sort" column="sort"/>
+    </resultMap>
+
+    <resultMap id="AttrGroupMapVo" type="com.xjzhang.pro.model.vo.AttrGroupVo">
+        <result property="attrGroupId" column="attr_group_id"/>
+        <result property="attrGroupName" column="attr_group_name"/>
+        <result property="catelogId" column="catelog_id"/>
+        <result property="descript" column="descript"/>
+        <result property="icon" column="icon"/>
+        <result property="sort" column="sort"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+               attr_group_id,
+               attr_group_name,
+               catelog_id,
+               descript,
+               icon,
+               sort
+        </sql>
+    <sql id="Base_OrderBy_Condition">
+        <if test="attrGroupDto.orderBy and attrGroupDto.orderBy !=''">
+            ORDER BY #{orderBy}
+        </if>
+    </sql>
+
+    <select id="queryAttrGroupWithPage" resultMap="AttrGroupMapVo">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_pro_attr_group
+        <where>
+            <if test="attrGroupDto.attrGroupId != null and attrGroupDto.attrGroupId != ''">
+                attr_group_id = #{attrGroupDto.attrGroupId}
+            </if>
+            <if test="attrGroupDto.attrGroupName != null and attrGroupDto.attrGroupName != ''">
+                attr_group_name = #{attrGroupDto.attrGroupName}
+            </if>
+            <if test="attrGroupDto.catelogId != null and attrGroupDto.catelogId != ''">
+                catelog_id = #{attrGroupDto.catelogId}
+            </if>
+            <if test="attrGroupDto.descript != null and attrGroupDto.descript != ''">
+                descript = #{attrGroupDto.descript}
+            </if>
+            <if test="attrGroupDto.icon != null and attrGroupDto.icon != ''">
+                icon = #{attrGroupDto.icon}
+            </if>
+            <if test="attrGroupDto.sort != null and attrGroupDto.sort != ''">
+                sort = #{attrGroupDto.sort}
+            </if>
+        </where>
+
+        <include refid="Base_OrderBy_Condition"/>
+    </select>
+</mapper>

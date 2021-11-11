@@ -17,6 +17,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value = "品牌Dto")
 public class BrandDto extends QueryDto {
     /**
+     /**
      *  品牌id
      */
     private Long brandId;
@@ -40,6 +41,7 @@ public class BrandDto extends QueryDto {
      *  显示状态[0-不显示；1-显示]
      */
     private Integer showStatus;
+
     /**
      *  排序
      */

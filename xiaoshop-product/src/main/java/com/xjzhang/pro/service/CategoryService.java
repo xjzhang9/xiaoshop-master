@@ -35,4 +35,11 @@ public interface CategoryService extends IService<Category> {
      * @return
      */
     boolean updateCategoryById(Category category);
+
+    /**
+     * 通过id获取商品分类路径
+     * @param id
+     * @return
+     */
+    Long[] getCategoryPath(Long id);
 }
