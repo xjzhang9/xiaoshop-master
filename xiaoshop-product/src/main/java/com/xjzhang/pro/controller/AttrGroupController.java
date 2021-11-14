@@ -2,20 +2,18 @@ package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
-import com.xjzhang.base.model.QueryDto;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.AttrGroupConvert;
 import com.xjzhang.pro.model.dto.AttrAttrgroupRelationDto;
-import com.xjzhang.pro.model.dto.AttrDto;
+import com.xjzhang.pro.model.dto.AttrGroupDto;
 import com.xjzhang.pro.model.dto.NoRelationAttrDto;
-import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
 import com.xjzhang.pro.model.entity.AttrGroup;
+import com.xjzhang.pro.model.vo.AttrGroupVo;
+import com.xjzhang.pro.model.vo.AttrGroupWithAttrsVo;
 import com.xjzhang.pro.model.vo.AttrVo;
+import com.xjzhang.pro.service.AttrGroupService;
 import com.xjzhang.pro.service.AttrService;
 import com.xjzhang.pro.service.CategoryService;
 import io.swagger.annotations.Api;
@@ -26,10 +24,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
-
-import com.xjzhang.pro.service.AttrGroupService;
-import com.xjzhang.pro.model.dto.AttrGroupDto;
-import com.xjzhang.pro.model.vo.AttrGroupVo;
 
 /**
  * 属性分组
@@ -57,9 +51,8 @@ public class AttrGroupController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 AttrGroup 信息")
     @RequestMapping("/queryAttrGroupWithPage")
-    public BaseWrapper<IPage<AttrGroupVo>> queryAttrGroupWithPage(@RequestBody AttrGroupDto  attrGroupDto) {
-        Page<AttrGroup> queryDtoPage = new Page(attrGroupDto.getPageIndex(), attrGroupDto.getPageSize());
-        IPage<AttrGroupVo> tablePage = attrGroupService.queryAttrGroupWithPage(queryDtoPage, attrGroupDto);
+    public BaseWrapper<IPage<AttrGroupVo>> queryAttrGroupWithPage(@RequestBody AttrGroupDto attrGroupDto) {
+        IPage<AttrGroupVo> tablePage = attrGroupService.queryAttrGroupWithPage(attrGroupDto.getPage(), attrGroupDto);
         return ResWrapper.ok(tablePage);
     }
 
@@ -172,5 +165,14 @@ public class AttrGroupController extends BaseController {
     public BaseWrapper addAttrRelation(@RequestBody List<AttrAttrgroupRelationDto> aattrDtos){
         boolean result =  attrService.addAttrRelation(aattrDtos);
         return super.handleResult(result);
+    }
+
+    @GetMapping("/{catelogId}/withattr")
+    public BaseWrapper<List<AttrGroupWithAttrsVo>> getAttrGroupWithAttrs(@PathVariable("catelogId")Long catelogId){
+
+        //1、查出当前分类下的所有属性分组，
+        //2、查出每个属性分组的所有属性
+        List<AttrGroupWithAttrsVo> vos =  attrGroupService.getAttrGroupWithAttrsByCatelogId(catelogId);
+        return ResWrapper.ok(vos);
     }
 }

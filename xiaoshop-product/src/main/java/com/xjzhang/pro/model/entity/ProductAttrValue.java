@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Data
 @TableName("tb_pro_product_attr_value")
-public class ProductAttrValue extends BaseEntity {
+public class ProductAttrValue {
     /**
     *  属性id
     */

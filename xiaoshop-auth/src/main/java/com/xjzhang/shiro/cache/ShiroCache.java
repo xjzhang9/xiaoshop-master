@@ -1,7 +1,7 @@
 package com.xjzhang.shiro.cache;
 
 import com.xjzhang.base.constant.RedisConstant;
-import com.xjzhang.utils.JwtUtil;
+import com.xjzhang.base.utils.JwtUtil;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.AttrGroupDto;
+import com.xjzhang.pro.model.entity.AttrGroup;
+import com.xjzhang.pro.model.vo.AttrGroupVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.AttrGroupDto;
-import com.xjzhang.pro.model.vo.AttrGroupVo;
-import com.xjzhang.pro.model.entity.AttrGroup;
 
 /**
  * 属性分组 bean 转换
@@ -22,7 +22,7 @@ public class AttrGroupConvert {
     * entity -> vo
     * @return
     */
-    public static  AttrGroupVo entity2Vo(AttrGroup attrGroup) {
+    public static AttrGroupVo entity2Vo(AttrGroup attrGroup) {
         if (attrGroup ==null){
             return null;
         }

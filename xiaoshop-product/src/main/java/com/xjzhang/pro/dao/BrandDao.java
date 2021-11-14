@@ -2,7 +2,6 @@ package com.xjzhang.pro.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.pro.model.dto.BrandDto;
 import com.xjzhang.pro.model.entity.Brand;
 import com.xjzhang.pro.model.vo.BrandVo;
@@ -26,5 +25,5 @@ public interface BrandDao extends BaseMapper<Brand> {
      * @param queryDtoPage
      * @return
      */
-    IPage<BrandVo> queryBrandWithPage(@Param("brandDto") BrandDto brandDto, Page<Brand> queryDtoPage);
+    IPage<BrandVo> queryBrandWithPage(@Param("brandDto") BrandDto brandDto, IPage<Brand> queryDtoPage);
 }

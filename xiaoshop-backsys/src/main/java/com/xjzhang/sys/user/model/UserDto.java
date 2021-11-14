@@ -1,6 +1,6 @@
 package com.xjzhang.sys.user.model;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 @Data
-public class UserDto extends QueryDto {
+public class UserDto extends BaseQuery {
     /**
      *  用户id
      */

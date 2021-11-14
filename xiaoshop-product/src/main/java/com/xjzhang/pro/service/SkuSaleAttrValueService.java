@@ -1,7 +1,6 @@
 package com.xjzhang.pro.service;
-
-import com.xjzhang.pro.model.entity.SkuSaleAttrValue;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.SkuSaleAttrValue;
 
 /**
  * sku销售属性&值

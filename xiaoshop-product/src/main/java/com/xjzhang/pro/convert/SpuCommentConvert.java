@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.SpuCommentDto;
+import com.xjzhang.pro.model.entity.SpuComment;
+import com.xjzhang.pro.model.vo.SpuCommentVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.SpuCommentDto;
-import com.xjzhang.pro.model.vo.SpuCommentVo;
-import com.xjzhang.pro.model.entity.SpuComment;
 
 /**
  * 商品评价 bean 转换

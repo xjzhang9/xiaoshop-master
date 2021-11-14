@@ -4,19 +4,32 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xjzhang.pro.dao.SpuImagesDao;
 import com.xjzhang.pro.model.entity.SpuImages;
 import com.xjzhang.pro.service.SpuImagesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 /**
- * spu图片
- *
- * @Author xjzhang
- * @email xjzhang@163.com
- * @date 2021-10-05 17:10:35
+ * @author THTF
  */
-
-@Service("SpuImagesService")
+@Service("spuImagesService")
 public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImages> implements SpuImagesService {
-   @Autowired
-    private SpuImagesDao spuImagesDao;
+
+    @Override
+    public void saveImages(Long id, List<String> images) {
+        if(images == null || images.size() == 0){
+
+        }else{
+            List<SpuImages> collect = images.stream().map(img -> {
+                SpuImages spuImagesEntity = new SpuImages();
+                spuImagesEntity.setSpuId(id);
+                spuImagesEntity.setImgUrl(img);
+
+                return spuImagesEntity;
+            }).collect(Collectors.toList());
+
+            this.saveBatch(collect);
+        }
+    }
+
 }

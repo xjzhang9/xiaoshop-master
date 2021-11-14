@@ -1,19 +1,14 @@
 package com.xjzhang.pro.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xjzhang.base.enums.ErrorCodeEnum;
 import com.xjzhang.pro.dao.BrandDao;
-import com.xjzhang.pro.exception.ProBizException;
 import com.xjzhang.pro.model.dto.BrandDto;
 import com.xjzhang.pro.model.entity.Brand;
-import com.xjzhang.pro.model.entity.CategoryBrandRelation;
 import com.xjzhang.pro.model.vo.BrandVo;
 import com.xjzhang.pro.service.BrandService;
 import com.xjzhang.pro.service.CategoryBrandRelationService;
 import org.apache.commons.lang3.StringUtils;
-import org.bouncycastle.eac.EACIOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,8 +30,8 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, Brand> implements Br
     private CategoryBrandRelationService relationService;
 
     @Override
-    public IPage<BrandVo> queryBrandWithPage(BrandDto brandDto, Page<Brand> queryDtoPage){
-        IPage<BrandVo> brandVoIPage = brandDao.queryBrandWithPage(brandDto, queryDtoPage);
+    public IPage<BrandVo> queryBrandWithPage(BrandDto brandDto){
+        IPage<BrandVo> brandVoIPage = brandDao.queryBrandWithPage(brandDto, brandDto.getPage());
         return brandVoIPage;
     }
 

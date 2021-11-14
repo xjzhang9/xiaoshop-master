@@ -1,7 +1,7 @@
 package com.xjzhang.pro.service;
 
-import com.xjzhang.pro.model.entity.SkuImages;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.SkuImages;
 
 /**
  * sku图片

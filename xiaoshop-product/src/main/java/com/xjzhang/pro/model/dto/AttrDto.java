@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "商品属性Dto")
-public class AttrDto extends QueryDto {
+public class AttrDto extends BaseQuery {
     /**
      *  属性id
      */

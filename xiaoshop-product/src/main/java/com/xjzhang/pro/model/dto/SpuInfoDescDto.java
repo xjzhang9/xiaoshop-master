@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "spu信息介绍Dto")
-public class SpuInfoDescDto extends QueryDto {
+public class SpuInfoDescDto extends BaseQuery {
     /**
      *  商品介绍
      */

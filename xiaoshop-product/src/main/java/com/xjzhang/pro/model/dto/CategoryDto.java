@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "商品三级分类Dto")
-public class CategoryDto extends QueryDto {
+public class CategoryDto extends BaseQuery {
     /**
      *  分类id
      */

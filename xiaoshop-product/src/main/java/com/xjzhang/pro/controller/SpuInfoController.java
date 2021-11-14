@@ -1,21 +1,22 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SpuInfoConvert;
+import com.xjzhang.pro.model.dto.SaveSpuInfoDto;
+import com.xjzhang.pro.model.dto.SpuInfoDto;
 import com.xjzhang.pro.model.entity.SpuInfo;
+import com.xjzhang.pro.model.vo.SpuInfoVo;
+import com.xjzhang.pro.service.SpuInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
-import com.xjzhang.pro.service.SpuInfoService;
-import com.xjzhang.pro.model.dto.SpuInfoDto;
-import com.xjzhang.pro.model.vo.SpuInfoVo;
 
 /**
  * spu信息
@@ -36,12 +37,23 @@ public class SpuInfoController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SpuInfo 信息")
     @RequestMapping("/querySpuInfoWithPage")
-    public BaseWrapper<IPage<SpuInfoVo>> querySpuInfoWithPage(@RequestBody SpuInfoDto  spuInfoDto) {
-        Page<SpuInfo> queryDtoPage = new Page(spuInfoDto.getPageIndex(), spuInfoDto.getPageSize());
-        IPage<SpuInfo> tablePage = spuInfoService.page(queryDtoPage);
+    public BaseWrapper<IPage<SpuInfoVo>> querySpuInfoWithPage(@RequestBody SpuInfoDto spuInfoDto) {
+        IPage<SpuInfo> tablePage = spuInfoService.page(spuInfoDto.getPage());
         IPage<SpuInfoVo> voIPage = SpuInfoConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);
+    }
+
+
+    /**
+     * 商品上架
+     *
+     * @return
+     */
+    @PostMapping("/{spuId}/up")
+    public BaseWrapper upSpuForSearch(@PathVariable("spuId") Long spuId) {
+        spuInfoService.upSpuForSearch(spuId);
+        return BaseWrapper.ok();
     }
 
     /**
@@ -51,7 +63,7 @@ public class SpuInfoController extends BaseController {
     @RequestMapping("/getSpuInfoById")
     public BaseWrapper getSpuInfoById(@PathVariable Long id) {
         SpuInfo spuInfo = spuInfoService.getById(id);
-        SpuInfoVo spuInfoVo=  SpuInfoConvert.entity2Vo(spuInfo);
+        SpuInfoVo spuInfoVo = SpuInfoConvert.entity2Vo(spuInfo);
 
         return ResWrapper.ok(spuInfoVo);
     }
@@ -61,9 +73,8 @@ public class SpuInfoController extends BaseController {
      */
     @PostMapping("/saveSpuInfo")
     @ApiOperation(httpMethod = "POST", value = "保存 SpuInfo 信息")
-    public BaseWrapper saveSpuInfo (@RequestBody SpuInfoDto  spuInfoDto) {
-        SpuInfo spuInfo = SpuInfoConvert.dto2Entity(spuInfoDto);
-        boolean result = spuInfoService.save(spuInfo);
+    public BaseWrapper saveSpuInfo(@RequestBody SaveSpuInfoDto spuInfoDto) {
+        boolean result = spuInfoService.saveSpuInfo(spuInfoDto);
 
         return super.handleResult(result);
     }
@@ -73,9 +84,9 @@ public class SpuInfoController extends BaseController {
      */
     @PostMapping("/updateSpuInfoById")
     @ApiOperation(httpMethod = "POST", value = "更新SpuInfo 信息")
-    public BaseWrapper updateSpuInfoById (@RequestBody SpuInfoDto  spuInfoDto) {
+    public BaseWrapper updateSpuInfoById(@RequestBody SpuInfoDto spuInfoDto) {
         SpuInfo spuInfo = SpuInfoConvert.dto2Entity(spuInfoDto);
-        boolean result =  spuInfoService.updateById(spuInfo);
+        boolean result = spuInfoService.updateById(spuInfo);
 
         return super.handleResult(result);
     }
@@ -96,7 +107,7 @@ public class SpuInfoController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "批量删除SpuInfo 信息")
     @RequestMapping("/bathDelete")
-    public BaseWrapper bathDelete(@RequestBody Long[] BrandIds){
+    public BaseWrapper bathDelete(@RequestBody Long[] BrandIds) {
         boolean result = spuInfoService.removeByIds(Arrays.asList(BrandIds));
 
         return super.handleResult(result);

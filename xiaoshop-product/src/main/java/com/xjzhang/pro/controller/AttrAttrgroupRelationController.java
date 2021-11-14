@@ -1,22 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.AttrAttrgroupRelationConvert;
+import com.xjzhang.pro.model.dto.AttrAttrgroupRelationDto;
 import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
+import com.xjzhang.pro.model.vo.AttrAttrgroupRelationVo;
+import com.xjzhang.pro.service.AttrAttrgroupRelationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-
-import com.xjzhang.pro.service.AttrAttrgroupRelationService;
-import com.xjzhang.pro.model.dto.AttrAttrgroupRelationDto;
-import com.xjzhang.pro.model.vo.AttrAttrgroupRelationVo;
 
 /**
  * 属性&属性分组关联
@@ -37,11 +35,9 @@ public class AttrAttrgroupRelationController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 AttrAttrgroupRelation 信息")
     @RequestMapping("/queryAttrAttrgroupRelationWithPage")
-    public BaseWrapper<IPage<AttrAttrgroupRelationVo>> queryAttrAttrgroupRelationWithPage(@RequestBody AttrAttrgroupRelationDto  attrAttrgroupRelationDto) {
-        Page<AttrAttrgroupRelation> queryDtoPage = new Page(attrAttrgroupRelationDto.getPageIndex(), attrAttrgroupRelationDto.getPageSize());
-        IPage<AttrAttrgroupRelation> tablePage = attrAttrgroupRelationService.page(queryDtoPage);
+    public BaseWrapper<IPage<AttrAttrgroupRelationVo>> queryAttrAttrgroupRelationWithPage(@RequestBody AttrAttrgroupRelationDto attrAttrgroupRelationDto) {
+        IPage<AttrAttrgroupRelation> tablePage = attrAttrgroupRelationService.page(attrAttrgroupRelationDto.getPage());
         IPage<AttrAttrgroupRelationVo> voIPage = AttrAttrgroupRelationConvert.entity2VoPage(tablePage);
-
         return ResWrapper.ok(voIPage);
     }
 

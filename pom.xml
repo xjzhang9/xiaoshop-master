@@ -23,12 +23,11 @@
         <!--        <module>xiaoshop-order</module>-->
         <module>xiaoshop-auth</module>
         <!--        <module>xiaoshop-ware</module>-->
-        <!--        <module>xiaoshop-search</module>-->
         <!--        <module>xiaoshop-seckill</module>-->
         <!--        <module>xiaoshop-member</module>-->
         <!--        <module>xiaoshop-coupon</module>-->
         <module>xiaoshop-gateway</module>
-        <!--        <module>xiaoshop-pay</module>-->
+        <module>xiaoshop-es</module>
         <module>xiaoshop-backsys</module>
         <module>xiaoshop-generator</module>
         <module>xiaoshop-dependency</module>

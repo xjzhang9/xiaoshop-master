@@ -1,22 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SpuImagesConvert;
-import com.xjzhang.pro.model.entity.SpuInfo;
+import com.xjzhang.pro.model.dto.SpuImagesDto;
 import com.xjzhang.pro.model.entity.SpuImages;
+import com.xjzhang.pro.model.entity.SpuInfo;
+import com.xjzhang.pro.service.SpuImagesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.SpuImagesService;
-import com.xjzhang.pro.model.dto.SpuImagesDto;
-
 /**
  * spu图片
  *
@@ -36,9 +34,8 @@ public class SpuImagesController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SpuImages 信息")
     @RequestMapping("/querySpuImagesWithPage")
-    public BaseWrapper<IPage<SpuInfo.SpuImagesVo>> querySpuImagesWithPage(@RequestBody SpuImagesDto  spuImagesDto) {
-        Page<SpuImages> queryDtoPage = new Page(spuImagesDto.getPageIndex(), spuImagesDto.getPageSize());
-        IPage<SpuImages> tablePage = spuImagesService.page(queryDtoPage);
+    public BaseWrapper<IPage<SpuInfo.SpuImagesVo>> querySpuImagesWithPage(@RequestBody SpuImagesDto spuImagesDto) {
+        IPage<SpuImages> tablePage = spuImagesService.page(spuImagesDto.getPage());
         IPage<SpuInfo.SpuImagesVo> voIPage = SpuImagesConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

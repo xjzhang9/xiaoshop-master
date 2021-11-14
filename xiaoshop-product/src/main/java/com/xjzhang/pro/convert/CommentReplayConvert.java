@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.CommentReplayDto;
+import com.xjzhang.pro.model.entity.CommentReplay;
+import com.xjzhang.pro.model.vo.CommentReplayVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.CommentReplayDto;
-import com.xjzhang.pro.model.vo.CommentReplayVo;
-import com.xjzhang.pro.model.entity.CommentReplay;
 
 /**
  * 商品评价回复关系 bean 转换
@@ -22,7 +22,7 @@ public class CommentReplayConvert {
     * entity -> vo
     * @return
     */
-    public static  CommentReplayVo entity2Vo(CommentReplay commentReplay) {
+    public static CommentReplayVo entity2Vo(CommentReplay commentReplay) {
         if (commentReplay ==null){
             return null;
         }

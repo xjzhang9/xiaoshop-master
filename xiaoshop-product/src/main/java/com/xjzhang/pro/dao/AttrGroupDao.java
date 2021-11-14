@@ -2,7 +2,6 @@ package com.xjzhang.pro.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.pro.model.dto.AttrGroupDto;
 import com.xjzhang.pro.model.entity.AttrGroup;
 import com.xjzhang.pro.model.vo.AttrGroupVo;
@@ -26,5 +25,5 @@ public interface  AttrGroupDao extends BaseMapper<AttrGroup> {
      * @param queryDtoPage
      * @return
      */
-    IPage<AttrGroupVo> queryAttrGroupWithPage(@Param("attrGroupDto") AttrGroupDto attrGroupDto, Page<AttrGroup> queryDtoPage);
+    IPage<AttrGroupVo> queryAttrGroupWithPage(@Param("attrGroupDto") AttrGroupDto attrGroupDto, IPage<AttrGroupVo> queryDtoPage);
 }

@@ -1,15 +1,16 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.model.LoginUserDto;
 import com.xjzhang.base.utils.TreeUtils;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.CategoryConvert;
+import com.xjzhang.pro.model.dto.CategoryDto;
 import com.xjzhang.pro.model.entity.Category;
+import com.xjzhang.pro.model.vo.CategoryVo;
+import com.xjzhang.pro.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -17,13 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.xjzhang.pro.service.CategoryService;
-import com.xjzhang.pro.model.dto.CategoryDto;
-import com.xjzhang.pro.model.vo.CategoryVo;
 
 /**
  * 商品三级分类
@@ -37,7 +35,7 @@ import com.xjzhang.pro.model.vo.CategoryVo;
 @RequestMapping(value = "pro/category", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "商品三级分类管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class CategoryController extends BaseController {
-    @Autowired
+    @Resource
     private CategoryService categoryService;
 
     /**
@@ -46,8 +44,7 @@ public class CategoryController extends BaseController {
     @ApiOperation(httpMethod = "POST", value = "分页查询 Category 信息")
     @RequestMapping("/list")
     public BaseWrapper<IPage<CategoryVo>> queryCategoryWithPage(@RequestBody CategoryDto categoryDto) {
-        Page<Category> queryDtoPage = new Page(categoryDto.getPageIndex(), categoryDto.getPageSize());
-        IPage<Category> tablePage = categoryService.page(queryDtoPage);
+        IPage<Category> tablePage = categoryService.page(categoryDto.getPage());
         IPage<CategoryVo> voIPage = CategoryConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

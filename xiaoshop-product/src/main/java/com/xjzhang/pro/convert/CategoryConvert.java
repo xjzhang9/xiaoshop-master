@@ -1,15 +1,13 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.CategoryDto;
+import com.xjzhang.pro.model.entity.Category;
+import com.xjzhang.pro.model.vo.CategoryVo;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import com.xjzhang.pro.model.dto.CategoryDto;
-import com.xjzhang.pro.model.vo.CategoryVo;
-import com.xjzhang.pro.model.entity.Category;
-
 /**
  * 商品三级分类 bean 转换
  *

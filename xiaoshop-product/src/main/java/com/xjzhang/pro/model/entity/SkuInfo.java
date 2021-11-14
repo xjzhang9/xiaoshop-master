@@ -20,59 +20,59 @@ import java.math.BigDecimal;
 @TableName("tb_pro_sku_info")
 public class SkuInfo extends BaseEntity {
     /**
-    *  品牌id
-    */
-        @TableId
-        @TableField("brand_id")
+     * 品牌id
+     */
+    @TableId
+    @TableField("brand_id")
     private Long brandId;
-        /**
-    *  所属分类id
-    */
-        @TableField("catalog_id")
+    /**
+     * 所属分类id
+     */
+    @TableField("catalog_id")
     private Long catalogId;
-        /**
-    *  价格
-    */
-        @TableField("price")
+    /**
+     * 价格
+     */
+    @TableField("price")
     private BigDecimal price;
-        /**
-    *  销量
-    */
-        @TableField("sale_count")
+    /**
+     * 销量
+     */
+    @TableField("sale_count")
     private Long saleCount;
-        /**
-    *  默认图片
-    */
-        @TableField("sku_default_img")
+    /**
+     * 默认图片
+     */
+    @TableField("sku_default_img")
     private String skuDefaultImg;
-        /**
-    *  sku介绍描述
-    */
-        @TableField("sku_desc")
+    /**
+     * sku介绍描述
+     */
+    @TableField("sku_desc")
     private String skuDesc;
-        /**
-    *  skuId
-    */
-        @TableField("sku_id")
+    /**
+     * skuId
+     */
+    @TableField("sku_id")
     private Long skuId;
-        /**
-    *  sku名称
-    */
-        @TableField("sku_name")
+    /**
+     * sku名称
+     */
+    @TableField("sku_name")
     private String skuName;
-        /**
-    *  副标题
-    */
-        @TableField("sku_subtitle")
+    /**
+     * 副标题
+     */
+    @TableField("sku_subtitle")
     private String skuSubtitle;
-        /**
-    *  标题
-    */
-        @TableField("sku_title")
+    /**
+     * 标题
+     */
+    @TableField("sku_title")
     private String skuTitle;
-        /**
-    *  spuId
-    */
-        @TableField("spu_id")
+    /**
+     * spuId
+     */
+    @TableField("spu_id")
     private Long spuId;
-    }
+}

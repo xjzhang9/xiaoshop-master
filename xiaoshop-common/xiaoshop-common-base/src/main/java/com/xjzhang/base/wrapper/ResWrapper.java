@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
  * @version 1.0
  * @date 2021/8/22 16:59
  */
-public class ResWrapper {
+public class ResWrapper extends BaseWrapper {
     public ResWrapper() {
     }
 
@@ -20,13 +20,13 @@ public class ResWrapper {
         return new BaseWrapper(BaseWrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? BaseWrapper.SUCCESS_MSG : msg);
     }
 
-    public static <T> BaseWrapper<T> ok(T data) {
-        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, BaseWrapper.SUCCESS_MSG, data);
-    }
-
-    public static <T> BaseWrapper<T> ok(String msg, Object data) {
-        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? BaseWrapper.SUCCESS_MSG : msg, data);
-    }
+//    public static <T> BaseWrapper<T> ok(T data) {
+//        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, BaseWrapper.SUCCESS_MSG, data);
+//    }
+//
+//    public static <T> BaseWrapper<T> ok(String msg, Object data) {
+//        return new BaseWrapper(BaseWrapper.SUCCESS_CODE, StringUtils.isBlank(msg)? BaseWrapper.SUCCESS_MSG : msg, data);
+//    }
 
     public static BaseWrapper error() {
         return new BaseWrapper(BaseWrapper.ERROR_CODE, BaseWrapper.ERROR_MSG);
@@ -40,9 +40,9 @@ public class ResWrapper {
         return new BaseWrapper(code, msg, null);
     }
 
-    public static<T> BaseWrapper<T> error(int code, String msg, T data) {
-        return new BaseWrapper(code, msg, data);
-    }
+//    public static<T> BaseWrapper<T> error(int code, String msg, T data) {
+//        return new BaseWrapper(code, msg, data);
+//    }
 
     public static BaseWrapper error(Exception ex) {
         return new BaseWrapper(BaseWrapper.ERROR_CODE, ex.getMessage());

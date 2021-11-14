@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "sku图片Dto")
-public class SkuImagesDto extends QueryDto {
+public class SkuImagesDto extends BaseQuery {
     /**
      *  默认图[0 - 不是默认图，1 - 是默认图]
      */

@@ -1,21 +1,25 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
+
 import com.xjzhang.pro.convert.CategoryBrandRelationConvert;
+import com.xjzhang.pro.model.dto.CategoryBrandRelationDto;
+import com.xjzhang.pro.model.entity.Brand;
 import com.xjzhang.pro.model.entity.CategoryBrandRelation;
+import com.xjzhang.pro.model.vo.BrandVo;
+import com.xjzhang.pro.model.vo.CategoryBrandRelationVo;
+import com.xjzhang.pro.service.CategoryBrandRelationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.CategoryBrandRelationService;
-import com.xjzhang.pro.model.dto.CategoryBrandRelationDto;
-import com.xjzhang.pro.model.vo.CategoryBrandRelationVo;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 品牌分类关联
@@ -36,9 +40,8 @@ public class CategoryBrandRelationController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 CategoryBrandRelation 信息")
     @RequestMapping("/queryCategoryBrandRelationWithPage")
-    public BaseWrapper<IPage<CategoryBrandRelationVo>> queryCategoryBrandRelationWithPage(@RequestBody CategoryBrandRelationDto  categoryBrandRelationDto) {
-        Page<CategoryBrandRelation> queryDtoPage = new Page(categoryBrandRelationDto.getPageIndex(), categoryBrandRelationDto.getPageSize());
-        IPage<CategoryBrandRelation> tablePage = categoryBrandRelationService.page(queryDtoPage);
+    public BaseWrapper<IPage<CategoryBrandRelationVo>> queryCategoryBrandRelationWithPage(@RequestBody CategoryBrandRelationDto categoryBrandRelationDto) {
+        IPage<CategoryBrandRelation> tablePage = categoryBrandRelationService.page(categoryBrandRelationDto.getPage());
         IPage<CategoryBrandRelationVo> voIPage = CategoryBrandRelationConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);
@@ -100,5 +103,27 @@ public class CategoryBrandRelationController extends BaseController {
         boolean result = categoryBrandRelationService.removeByIds(Arrays.asList(BrandIds));
 
         return super.handleResult(result);
+    }
+
+
+    /**
+     *  /product/categorybrandrelation/brands/list
+     *
+     *  1、Controller：处理请求，接受和校验数据
+     *  2、Service接受controller传来的数据，进行业务处理
+     *  3、Controller接受Service处理完的数据，封装页面指定的vo
+     */
+    @GetMapping("/brands/list")
+    public BaseWrapper<List<BrandVo>> relationBrandsList(@RequestParam(value = "catId",required = true)Long catId){
+        List<Brand> vos = categoryBrandRelationService.getBrandsByCatId(catId);
+
+        List<BrandVo> collect = vos.stream().map(item -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(item.getBrandId());
+            brandVo.setName(item.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+
+        return ResWrapper.ok(collect);
     }
 }

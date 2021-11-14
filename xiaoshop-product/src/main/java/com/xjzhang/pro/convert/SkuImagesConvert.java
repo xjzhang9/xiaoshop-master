@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.SkuImagesDto;
+import com.xjzhang.pro.model.entity.SkuImages;
+import com.xjzhang.pro.model.vo.SkuImagesVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.SkuImagesDto;
-import com.xjzhang.pro.model.vo.SkuImagesVo;
-import com.xjzhang.pro.model.entity.SkuImages;
 
 /**
  * sku图片 bean 转换
@@ -22,7 +22,7 @@ public class SkuImagesConvert {
     * entity -> vo
     * @return
     */
-    public static  SkuImagesVo entity2Vo(SkuImages skuImages) {
+    public static SkuImagesVo entity2Vo(SkuImages skuImages) {
         if (skuImages ==null){
             return null;
         }

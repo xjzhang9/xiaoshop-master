@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Data
 @TableName("tb_pro_category_brand_relation")
-public class CategoryBrandRelation extends BaseEntity {
+public class CategoryBrandRelation {
     /**
     *  品牌id
     */
@@ -24,7 +24,7 @@ public class CategoryBrandRelation extends BaseEntity {
         @TableField("brand_id")
     private Long brandId;
         /**
-    *  
+    *
     */
         @TableField("brand_name")
     private String brandName;
@@ -34,12 +34,12 @@ public class CategoryBrandRelation extends BaseEntity {
         @TableField("catelog_id")
     private Long catelogId;
         /**
-    *  
+    *
     */
         @TableField("catelog_name")
     private String catelogName;
         /**
-    *  
+    *
     */
         @TableField("id")
     private Long id;

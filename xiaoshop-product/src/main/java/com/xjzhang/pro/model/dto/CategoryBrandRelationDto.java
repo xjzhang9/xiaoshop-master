@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,13 +15,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "品牌分类关联Dto")
-public class CategoryBrandRelationDto extends QueryDto {
+public class CategoryBrandRelationDto extends BaseQuery {
     /**
      *  品牌id
      */
     private Long brandId;
     /**
-     *  
+     *
      */
     private String brandName;
     /**
@@ -29,11 +29,11 @@ public class CategoryBrandRelationDto extends QueryDto {
      */
     private Long catelogId;
     /**
-     *  
+     *
      */
     private String catelogName;
     /**
-     *  
+     *
      */
     private Long id;
 }

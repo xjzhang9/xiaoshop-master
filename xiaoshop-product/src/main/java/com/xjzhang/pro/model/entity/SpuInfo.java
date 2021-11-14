@@ -21,53 +21,59 @@ import java.util.Date;
 
 @Data
 @TableName("tb_pro_spu_info")
-public class SpuInfo extends BaseEntity {
+public class SpuInfo {
     /**
-    *  品牌id
-    */
-        @TableId
-        @TableField("brand_id")
+     * 品牌id
+     */
+    @TableId
+    @TableField("brand_id")
     private Long brandId;
-        /**
-    *  所属分类id
-    */
-        @TableField("catalog_id")
+    /**
+     * 所属分类id
+     */
+    @TableField("catalog_id")
     private Long catalogId;
-        /**
-    *  
-    */
-        @TableField("create_time")
+    /**
+     *
+     */
+    @TableField("create_time")
     private Date createTime;
-        /**
-    *  商品id
-    */
-        @TableField("id")
+    /**
+     * 商品id
+     */
+    @TableField("id")
     private Long id;
-        /**
-    *  上架状态[0 - 下架，1 - 上架]
-    */
-        @TableField("publish_status")
+    /**
+     * 上架状态[0 - 下架，1 - 上架]
+     */
+    @TableField("publish_status")
     private Integer publishStatus;
-        /**
-    *  商品描述
-    */
-        @TableField("spu_description")
+    /**
+     * 商品描述
+     */
+    @TableField("spu_description")
     private String spuDescription;
-        /**
-    *  商品名称
-    */
-        @TableField("spu_name")
+    /**
+     * 商品名称
+     */
+    @TableField("spu_name")
     private String spuName;
-        /**
-    *  
-    */
-        @TableField("update_time")
+    /**
+     *
+     */
+    @TableField("update_time")
     private Date updateTime;
-        /**
-    *  
-    */
-        @TableField("weight")
+    /**
+     *
+     */
+    @TableField("weight")
     private BigDecimal weight;
+
+    /**
+     * spu_id
+     */
+    @TableField("spu_id")
+    private Long spuId;
 
     /**
      * spu图片
@@ -80,28 +86,28 @@ public class SpuInfo extends BaseEntity {
     @EqualsAndHashCode()
     public static class SpuImagesVo extends BaseVo {
         /**
-        *  是否默认图
-        */
+         * 是否默认图
+         */
         private Integer defaultImg;
         /**
-        *  id
-        */
+         * id
+         */
         private Long id;
         /**
-        *  图片名
-        */
+         * 图片名
+         */
         private String imgName;
         /**
-        *  顺序
-        */
+         * 顺序
+         */
         private Integer imgSort;
         /**
-        *  图片地址
-        */
+         * 图片地址
+         */
         private String imgUrl;
         /**
-        *  spu_id
-        */
+         * spu_id
+         */
         private Long spuId;
     }
 }

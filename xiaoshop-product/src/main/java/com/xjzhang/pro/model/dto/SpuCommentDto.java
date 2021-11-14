@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "商品评价Dto")
-public class SpuCommentDto extends QueryDto {
+public class SpuCommentDto extends BaseQuery {
     /**
      *  评论类型[0 - 对商品的直接评论，1 - 对评论的回复]
      */

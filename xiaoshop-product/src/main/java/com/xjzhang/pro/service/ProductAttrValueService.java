@@ -1,7 +1,9 @@
 package com.xjzhang.pro.service;
 
-import com.xjzhang.pro.model.entity.ProductAttrValue;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.ProductAttrValue;
+import com.xjzhang.pro.model.vo.ProductAttrValueVo;
+import java.util.List;
 
 /**
  * spu属性值
@@ -11,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @date 2021-10-05 17:10:35
  */
 public interface ProductAttrValueService extends IService<ProductAttrValue> {
+    List<ProductAttrValueVo> baseAttrlistforspu(Long spuId);
 }

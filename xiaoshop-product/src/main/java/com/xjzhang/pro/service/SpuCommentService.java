@@ -1,7 +1,7 @@
 package com.xjzhang.pro.service;
 
-import com.xjzhang.pro.model.entity.SpuComment;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.SpuComment;
 
 /**
  * 商品评价

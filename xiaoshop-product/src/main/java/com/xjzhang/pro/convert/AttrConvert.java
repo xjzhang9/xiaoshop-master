@@ -1,13 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.AttrDto;
+import com.xjzhang.pro.model.entity.Attr;
+import com.xjzhang.pro.model.vo.AttrVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.AttrDto;
-import com.xjzhang.pro.model.vo.AttrVo;
-import com.xjzhang.pro.model.entity.Attr;
-
 /**
  * 商品属性 bean 转换
  *
@@ -22,7 +21,7 @@ public class AttrConvert {
     * entity -> vo
     * @return
     */
-    public static  AttrVo entity2Vo(Attr attr) {
+    public static AttrVo entity2Vo(Attr attr) {
         if (attr ==null){
             return null;
         }

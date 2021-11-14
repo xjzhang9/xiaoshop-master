@@ -7,6 +7,8 @@ import com.xjzhang.pro.service.AttrAttrgroupRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * 属性&属性分组关联
  *
@@ -17,6 +19,6 @@ import org.springframework.stereotype.Service;
 
 @Service("AttrAttrgroupRelationService")
 public class AttrAttrgroupRelationServiceImpl extends ServiceImpl<AttrAttrgroupRelationDao, AttrAttrgroupRelation> implements AttrAttrgroupRelationService {
-   @Autowired
+   @Resource
     private  AttrAttrgroupRelationDao attrAttrgroupRelationDao;
 }

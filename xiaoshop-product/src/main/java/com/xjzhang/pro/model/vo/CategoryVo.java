@@ -1,8 +1,6 @@
 package com.xjzhang.pro.model.vo;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.xjzhang.base.model.BaseTree;
-import com.xjzhang.base.model.BaseVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

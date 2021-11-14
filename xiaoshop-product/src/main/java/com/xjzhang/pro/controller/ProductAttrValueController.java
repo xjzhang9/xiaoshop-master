@@ -1,21 +1,21 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.ProductAttrValueConvert;
+import com.xjzhang.pro.model.dto.ProductAttrValueDto;
 import com.xjzhang.pro.model.entity.ProductAttrValue;
+import com.xjzhang.pro.model.vo.ProductAttrValueVo;
+import com.xjzhang.pro.service.ProductAttrValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.ProductAttrValueService;
-import com.xjzhang.pro.model.dto.ProductAttrValueDto;
-import com.xjzhang.pro.model.vo.ProductAttrValueVo;
+import java.util.List;
 
 /**
  * spu属性值
@@ -25,7 +25,7 @@ import com.xjzhang.pro.model.vo.ProductAttrValueVo;
  * @date 2021-10-05 17:10:35
  */
 @RestController
-@RequestMapping(value = "pro/productattrvalue", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "pro/attrvalue", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(value = "spu属性值管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ProductAttrValueController extends BaseController {
     @Autowired
@@ -36,9 +36,8 @@ public class ProductAttrValueController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 ProductAttrValue 信息")
     @RequestMapping("/queryProductAttrValueWithPage")
-    public BaseWrapper<IPage<ProductAttrValueVo>> queryProductAttrValueWithPage(@RequestBody ProductAttrValueDto  productAttrValueDto) {
-        Page<ProductAttrValue> queryDtoPage = new Page(productAttrValueDto.getPageIndex(), productAttrValueDto.getPageSize());
-        IPage<ProductAttrValue> tablePage = productAttrValueService.page(queryDtoPage);
+    public BaseWrapper<IPage<ProductAttrValueVo>> queryProductAttrValueWithPage(@RequestBody ProductAttrValueDto productAttrValueDto) {
+        IPage<ProductAttrValue> tablePage = productAttrValueService.page(productAttrValueDto.getPage());
         IPage<ProductAttrValueVo> voIPage = ProductAttrValueConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);
@@ -96,9 +95,21 @@ public class ProductAttrValueController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "批量删除ProductAttrValue 信息")
     @RequestMapping("/bathDelete")
-    public BaseWrapper bathDelete(@RequestBody Long[] AttrIds){
-        boolean result = productAttrValueService.removeByIds(Arrays.asList(AttrIds));
+    public BaseWrapper bathDelete(@RequestBody Long[] attrIds){
+        boolean result = productAttrValueService.removeByIds(Arrays.asList(attrIds));
 
         return super.handleResult(result);
     }
+
+    @ApiOperation(httpMethod = "POST", value = "批量删除ProductAttrValue 信息")
+    @GetMapping("/listforspu/{spuId}")
+    public BaseWrapper<List<ProductAttrValueVo>> baseAttrlistforspu(@PathVariable("spuId") Long spuId){
+
+        List<ProductAttrValueVo> entities = productAttrValueService.baseAttrlistforspu(spuId);
+
+        return ResWrapper.ok(entities);
+    }
+
+
+
 }

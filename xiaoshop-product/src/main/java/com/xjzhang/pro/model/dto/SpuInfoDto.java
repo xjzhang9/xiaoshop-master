@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +18,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "spu信息Dto")
-public class SpuInfoDto extends QueryDto {
+public class SpuInfoDto extends BaseQuery {
     /**
      *  品牌id
      */
@@ -28,7 +28,7 @@ public class SpuInfoDto extends QueryDto {
      */
     private Long catalogId;
     /**
-     *  
+     *
      */
     private Date createTime;
     /**
@@ -48,11 +48,11 @@ public class SpuInfoDto extends QueryDto {
      */
     private String spuName;
     /**
-     *  
+     *
      */
     private Date updateTime;
     /**
-     *  
+     *
      */
     private BigDecimal weight;
 }

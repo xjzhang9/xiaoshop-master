@@ -1,7 +1,8 @@
 package com.xjzhang.pro.service;
 
-import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
 
 /**
  * 属性&属性分组关联

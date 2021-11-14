@@ -1,20 +1,23 @@
 package com.xjzhang.pro.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xjzhang.base.wrapper.ResWrapper;
-import com.xjzhang.pro.convert.CategoryConvert;
 import com.xjzhang.pro.dao.AttrGroupDao;
 import com.xjzhang.pro.model.dto.AttrGroupDto;
 import com.xjzhang.pro.model.entity.AttrGroup;
-import com.xjzhang.pro.model.entity.Category;
 import com.xjzhang.pro.model.vo.AttrGroupVo;
-import com.xjzhang.pro.model.vo.BrandVo;
-import com.xjzhang.pro.model.vo.CategoryVo;
+import com.xjzhang.pro.model.vo.AttrGroupWithAttrsVo;
+import com.xjzhang.pro.model.vo.AttrVo;
+import com.xjzhang.pro.service.AttrAttrgroupRelationService;
 import com.xjzhang.pro.service.AttrGroupService;
+import com.xjzhang.pro.service.AttrService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 属性分组
@@ -26,11 +29,17 @@ import org.springframework.stereotype.Service;
 
 @Service("AttrGroupService")
 public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> implements AttrGroupService {
-   @Autowired
-    private  AttrGroupDao attrGroupDao;
+    @Resource
+    private AttrGroupDao attrGroupDao;
+
+    @Autowired
+    private AttrService attrService;
+
+    @Autowired
+    private AttrAttrgroupRelationService attrAttrgroupRelationService;
 
     @Override
-    public IPage<AttrGroupVo> queryAttrGroupWithPage(Page<AttrGroup> queryDtoPage, AttrGroupDto attrGroupDto) {
+    public IPage<AttrGroupVo> queryAttrGroupWithPage(IPage<AttrGroupVo> queryDtoPage, AttrGroupDto attrGroupDto) {
         IPage<AttrGroupVo> attrGroupVoIPage = attrGroupDao.queryAttrGroupWithPage(attrGroupDto, queryDtoPage);
         return attrGroupVoIPage;
     }
@@ -39,5 +48,23 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> i
     public boolean deleteAttrGroupAttrRelation(Long id) {
 
         return false;
+    }
+
+    @Override
+    public List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId) {
+        List<AttrGroup> list = this.list(new LambdaQueryWrapper<AttrGroup>().eq(AttrGroup::getCatelogId, catelogId));
+        List<AttrGroupWithAttrsVo> collect = null;
+        if (list != null && list.size() > 0) {
+            collect = list.stream().map(
+                    attrGroup -> {
+                        AttrGroupWithAttrsVo attrGroupWithAttrsVo = new AttrGroupWithAttrsVo();
+                        BeanUtils.copyProperties(attrGroup, attrGroupWithAttrsVo);
+                        List<AttrVo> attrList = attrService.attrRelation(attrGroup.getAttrGroupId());
+                        attrGroupWithAttrsVo.setAttrs(attrList);
+                        return attrGroupWithAttrsVo;
+                    }
+            ).collect(Collectors.toList());
+        }
+        return collect;
     }
 }

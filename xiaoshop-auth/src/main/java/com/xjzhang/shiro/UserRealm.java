@@ -2,8 +2,8 @@ package com.xjzhang.shiro;
 
 
 import com.xjzhang.base.constant.RedisConstant;
-import com.xjzhang.utils.JwtToken;
-import com.xjzhang.utils.JwtUtil;
+import com.xjzhang.base.utils.JwtToken;
+import com.xjzhang.base.utils.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

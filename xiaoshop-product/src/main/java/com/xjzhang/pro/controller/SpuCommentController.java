@@ -1,21 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SpuCommentConvert;
+import com.xjzhang.pro.model.dto.SpuCommentDto;
 import com.xjzhang.pro.model.entity.SpuComment;
+import com.xjzhang.pro.model.vo.SpuCommentVo;
+import com.xjzhang.pro.service.SpuCommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.SpuCommentService;
-import com.xjzhang.pro.model.dto.SpuCommentDto;
-import com.xjzhang.pro.model.vo.SpuCommentVo;
 
 /**
  * 商品评价
@@ -36,9 +35,8 @@ public class SpuCommentController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SpuComment 信息")
     @RequestMapping("/querySpuCommentWithPage")
-    public BaseWrapper<IPage<SpuCommentVo>> querySpuCommentWithPage(@RequestBody SpuCommentDto  spuCommentDto) {
-        Page<SpuComment> queryDtoPage = new Page(spuCommentDto.getPageIndex(), spuCommentDto.getPageSize());
-        IPage<SpuComment> tablePage = spuCommentService.page(queryDtoPage);
+    public BaseWrapper<IPage<SpuCommentVo>> querySpuCommentWithPage(@RequestBody SpuCommentDto spuCommentDto) {
+        IPage<SpuComment> tablePage = spuCommentService.page(spuCommentDto.getPage());
         IPage<SpuCommentVo> voIPage = SpuCommentConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

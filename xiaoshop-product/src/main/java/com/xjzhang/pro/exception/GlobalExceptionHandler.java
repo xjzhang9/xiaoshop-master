@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public BaseWrapper businessException(BusinessException e) {
 		log.error("业务异常={}", e.getMessage(), e);
-		return ResWrapper.error(e.getCode() == 0 ? BaseWrapper.ERROR_CODE : e.getCode(), e.getMessage());
+		return ResWrapper.error(e.getCode() == 200 ? BaseWrapper.ERROR_CODE : e.getCode(), e.getMessage());
 	}
 
 	/**

@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode()
-public class ProductAttrValueVo extends BaseVo {
+public class ProductAttrValueVo {
     /**
     *  属性id
     */

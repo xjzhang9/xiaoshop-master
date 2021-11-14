@@ -27,25 +27,25 @@ public class BaseController {
 
     protected <T> BaseWrapper<T> handleResult(T result) {
         if (isFlag(result)) {
-            return ResWrapper.ok(result);
+            return BaseWrapper.ok(result);
         } else {
-            return ResWrapper.error(BaseWrapper.ERROR_CODE, "操作失败", result);
+            return BaseWrapper.error(BaseWrapper.ERROR_CODE, "操作失败", result);
         }
     }
 
     protected <T> BaseWrapper<T> handleResult(T result, String errorMsg) {
         if (isFlag(result)) {
-            return ResWrapper.ok(result);
+            return BaseWrapper.ok(result);
         } else {
-            return ResWrapper.error(BaseWrapper.ERROR_CODE, errorMsg, result);
+            return BaseWrapper.error(BaseWrapper.ERROR_CODE, errorMsg, result);
         }
     }
 
     protected <T> BaseWrapper<T> handleResult(T result, int errorCode, String errorMsg) {
         if (isFlag(result)) {
-            return ResWrapper.ok(result);
+            return BaseWrapper.ok(result);
         } else {
-            return ResWrapper.error(errorCode, errorMsg, result);
+            return BaseWrapper.error(errorCode, errorMsg, result);
         }
     }
 

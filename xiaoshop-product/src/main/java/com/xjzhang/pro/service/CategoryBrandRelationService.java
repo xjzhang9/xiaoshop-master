@@ -1,8 +1,11 @@
 package com.xjzhang.pro.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.xjzhang.pro.model.entity.Brand;
 import com.xjzhang.pro.model.entity.Category;
 import com.xjzhang.pro.model.entity.CategoryBrandRelation;
-import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * 品牌分类关联
@@ -14,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface CategoryBrandRelationService extends IService<CategoryBrandRelation> {
     boolean updateCategory(Category category);
     boolean updateBrand(Long brandId, String name);
+
+    List<Brand> getBrandsByCatId(Long catId);
 }

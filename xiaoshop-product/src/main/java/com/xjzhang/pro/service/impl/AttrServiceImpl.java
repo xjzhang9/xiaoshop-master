@@ -1,11 +1,9 @@
 package com.xjzhang.pro.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xjzhang.base.model.QueryDto;
 import com.xjzhang.pro.constant.ProductConstant;
 import com.xjzhang.pro.convert.AttrAttrgroupRelationConvert;
 import com.xjzhang.pro.convert.AttrConvert;
@@ -16,8 +14,6 @@ import com.xjzhang.pro.model.dto.NoRelationAttrDto;
 import com.xjzhang.pro.model.entity.Attr;
 import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
 import com.xjzhang.pro.model.entity.AttrGroup;
-import com.xjzhang.pro.model.entity.Brand;
-import com.xjzhang.pro.model.vo.AttrGroupVo;
 import com.xjzhang.pro.model.vo.AttrVo;
 import com.xjzhang.pro.service.AttrAttrgroupRelationService;
 import com.xjzhang.pro.service.AttrGroupService;
@@ -25,9 +21,7 @@ import com.xjzhang.pro.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springfox.documentation.schema.Collections;
-import sun.security.krb5.internal.PAData;
-
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +35,7 @@ import java.util.stream.Collectors;
 
 @Service("AttrService")
 public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrService {
-    @Autowired
+    @Resource
     private AttrDao attrDao;
 
     @Autowired
@@ -102,6 +96,10 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
             return attrAttrgroupRelation.getAttrId();
         }).collect(Collectors.toList());
 
+        if (attrIdList == null || attrIdList.size() <= 0) {
+            return null;
+        }
+
         LambdaQueryWrapper<Attr> attrQuery = new LambdaQueryWrapper<Attr>().in(Attr::getAttrId, attrIdList);
 
         List<Attr> attrList =   this.list(attrQuery);
@@ -115,13 +113,17 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     @Override
     public boolean addAttrRelation(List<AttrAttrgroupRelationDto> attrAttrgroupRelationDtos) {
-        return attrAttrgroupRelationService.saveBatch( AttrAttrgroupRelationConvert.dto2EntityList(attrAttrgroupRelationDtos), attrAttrgroupRelationDtos.size());
+        return attrAttrgroupRelationService.saveBatch(AttrAttrgroupRelationConvert.dto2EntityList(attrAttrgroupRelationDtos), attrAttrgroupRelationDtos.size());
     }
 
     @Override
-    public IPage<AttrVo> getAttrByCatId(String type, Long catId, AttrDto attrDto) {
+    public IPage<AttrVo> getAttrByCatId(int type, Long catId, AttrDto attrDto) {
         Page<Attr> queryDtoPage = new Page(attrDto.getPageIndex(), attrDto.getPageSize());
-        IPage<Attr> page = this.page(queryDtoPage, new LambdaQueryWrapper<Attr>().eq(Attr::getCatelogId, catId).eq(Attr::getAttrType, type).like(Attr::getAttrName, attrDto.getAttrName()));
+        LambdaQueryWrapper<Attr> queryWrapper = new LambdaQueryWrapper<Attr>().eq(Attr::getCatelogId, catId).eq(Attr::getAttrType, type);
+        if (StringUtils.isNotBlank(attrDto.getAttrName())) {
+            queryWrapper.like(Attr::getAttrName, attrDto.getAttrName());
+        }
+        IPage<Attr> page = this.page(queryDtoPage, queryWrapper);
 
         return AttrConvert.entity2VoPage(page);
     }

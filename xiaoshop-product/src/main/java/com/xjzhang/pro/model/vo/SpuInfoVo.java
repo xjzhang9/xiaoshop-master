@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode()
-public class SpuInfoVo extends BaseVo {
+public class SpuInfoVo {
     /**
     *  品牌id
     */
@@ -26,7 +26,7 @@ public class SpuInfoVo extends BaseVo {
     */
     private Long catalogId;
     /**
-    *  
+    *
     */
     private Date createTime;
     /**
@@ -46,11 +46,11 @@ public class SpuInfoVo extends BaseVo {
     */
     private String spuName;
     /**
-    *  
+    *
     */
     private Date updateTime;
     /**
-    *  
+    *
     */
     private BigDecimal weight;
 }

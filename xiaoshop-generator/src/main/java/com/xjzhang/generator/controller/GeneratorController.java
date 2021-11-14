@@ -3,7 +3,7 @@ package com.xjzhang.generator.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.generator.model.TableInfo;
@@ -41,8 +41,8 @@ public class GeneratorController extends BaseController {
      * @return
      */
     @PostMapping("queryTableListWithPage")
-    public BaseWrapper<IPage<TableInfo>> queryTableListWithPage(@RequestBody QueryDto queryDto) {
-        Page<QueryDto> queryDtoPage = new Page(queryDto.getPageIndex(), queryDto.getPageSize());
+    public BaseWrapper<IPage<TableInfo>> queryTableListWithPage(@RequestBody BaseQuery queryDto) {
+        Page<BaseQuery> queryDtoPage = new Page(queryDto.getPageIndex(), queryDto.getPageSize());
         IPage<TableInfo> tablePage = generatorService.queryTableListWithPage(queryDtoPage);
 
         return ResWrapper.ok(tablePage);

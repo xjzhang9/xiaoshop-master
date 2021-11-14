@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.ProductAttrValueDto;
+import com.xjzhang.pro.model.entity.ProductAttrValue;
+import com.xjzhang.pro.model.vo.ProductAttrValueVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.ProductAttrValueDto;
-import com.xjzhang.pro.model.vo.ProductAttrValueVo;
-import com.xjzhang.pro.model.entity.ProductAttrValue;
 
 /**
  * spu属性值 bean 转换
@@ -22,7 +22,7 @@ public class ProductAttrValueConvert {
     * entity -> vo
     * @return
     */
-    public static  ProductAttrValueVo entity2Vo(ProductAttrValue productAttrValue) {
+    public static ProductAttrValueVo entity2Vo(ProductAttrValue productAttrValue) {
         if (productAttrValue ==null){
             return null;
         }

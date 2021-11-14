@@ -1,11 +1,12 @@
 package com.xjzhang.pro.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xjzhang.pro.model.dto.AttrGroupDto;
 import com.xjzhang.pro.model.entity.AttrGroup;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.xjzhang.pro.model.vo.AttrGroupVo;
+import com.xjzhang.pro.model.vo.AttrGroupWithAttrsVo;
+import java.util.List;
 
 /**
  * 属性分组
@@ -15,7 +16,9 @@ import com.xjzhang.pro.model.vo.AttrGroupVo;
  * @date 2021-10-05 17:10:35
  */
 public interface AttrGroupService extends IService<AttrGroup> {
-    IPage<AttrGroupVo> queryAttrGroupWithPage(Page<AttrGroup> queryDtoPage, AttrGroupDto attrGroupDto);
+    IPage<AttrGroupVo> queryAttrGroupWithPage(IPage<AttrGroupVo> queryDtoPage, AttrGroupDto attrGroupDto);
 
     boolean deleteAttrGroupAttrRelation(Long id);
+
+    List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
 }

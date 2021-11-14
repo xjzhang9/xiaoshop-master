@@ -1,13 +1,15 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.BrandConvert;
+import com.xjzhang.pro.model.dto.BrandDto;
 import com.xjzhang.pro.model.dto.EditBrandDto;
 import com.xjzhang.pro.model.entity.Brand;
+import com.xjzhang.pro.model.vo.BrandVo;
+import com.xjzhang.pro.service.BrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
-
-import com.xjzhang.pro.service.BrandService;
-import com.xjzhang.pro.model.dto.BrandDto;
-import com.xjzhang.pro.model.vo.BrandVo;
 
 /**
  * 品牌
@@ -43,8 +40,7 @@ public class BrandController extends BaseController {
     @ApiOperation(httpMethod = "POST", value = "分页查询 Brand 信息")
     @RequestMapping("/queryBrandWithPage")
     public BaseWrapper<IPage<BrandVo>> queryBrandWithPage(@RequestBody BrandDto brandDto) {
-        Page<Brand> queryDtoPage = new Page(brandDto.getPageIndex(), brandDto.getPageSize());
-        IPage<BrandVo> tablePage = brandService.queryBrandWithPage(brandDto, queryDtoPage);
+        IPage<BrandVo> tablePage = brandService.queryBrandWithPage(brandDto);
         return ResWrapper.ok(tablePage);
     }
 

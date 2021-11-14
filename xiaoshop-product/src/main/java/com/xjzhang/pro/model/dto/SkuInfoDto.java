@@ -1,6 +1,6 @@
 package com.xjzhang.pro.model.dto;
 
-import com.xjzhang.base.model.QueryDto;
+import com.xjzhang.base.model.BaseQuery;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(value = "sku信息Dto")
-public class SkuInfoDto extends QueryDto {
+public class SkuInfoDto extends BaseQuery {
     /**
      *  品牌id
      */

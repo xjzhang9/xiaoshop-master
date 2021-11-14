@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.CategoryBrandRelationDto;
+import com.xjzhang.pro.model.entity.CategoryBrandRelation;
+import com.xjzhang.pro.model.vo.CategoryBrandRelationVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.CategoryBrandRelationDto;
-import com.xjzhang.pro.model.vo.CategoryBrandRelationVo;
-import com.xjzhang.pro.model.entity.CategoryBrandRelation;
 
 /**
  * 品牌分类关联 bean 转换
@@ -22,7 +22,7 @@ public class CategoryBrandRelationConvert {
     * entity -> vo
     * @return
     */
-    public static  CategoryBrandRelationVo entity2Vo(CategoryBrandRelation categoryBrandRelation) {
+    public static CategoryBrandRelationVo entity2Vo(CategoryBrandRelation categoryBrandRelation) {
         if (categoryBrandRelation ==null){
             return null;
         }

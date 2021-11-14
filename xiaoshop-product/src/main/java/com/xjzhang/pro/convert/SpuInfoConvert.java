@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.SpuInfoDto;
+import com.xjzhang.pro.model.entity.SpuInfo;
+import com.xjzhang.pro.model.vo.SpuInfoVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.SpuInfoDto;
-import com.xjzhang.pro.model.vo.SpuInfoVo;
-import com.xjzhang.pro.model.entity.SpuInfo;
 
 /**
  * spu信息 bean 转换
@@ -22,7 +22,7 @@ public class SpuInfoConvert {
     * entity -> vo
     * @return
     */
-    public static  SpuInfoVo entity2Vo(SpuInfo spuInfo) {
+    public static SpuInfoVo entity2Vo(SpuInfo spuInfo) {
         if (spuInfo ==null){
             return null;
         }

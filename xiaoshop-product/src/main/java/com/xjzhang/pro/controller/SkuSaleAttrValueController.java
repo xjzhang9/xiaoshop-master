@@ -1,21 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SkuSaleAttrValueConvert;
+import com.xjzhang.pro.model.dto.SkuSaleAttrValueDto;
 import com.xjzhang.pro.model.entity.SkuSaleAttrValue;
+import com.xjzhang.pro.model.vo.SkuSaleAttrValueVo;
+import com.xjzhang.pro.service.SkuSaleAttrValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.SkuSaleAttrValueService;
-import com.xjzhang.pro.model.dto.SkuSaleAttrValueDto;
-import com.xjzhang.pro.model.vo.SkuSaleAttrValueVo;
 
 /**
  * sku销售属性&值
@@ -36,9 +35,8 @@ public class SkuSaleAttrValueController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SkuSaleAttrValue 信息")
     @RequestMapping("/querySkuSaleAttrValueWithPage")
-    public BaseWrapper<IPage<SkuSaleAttrValueVo>> querySkuSaleAttrValueWithPage(@RequestBody SkuSaleAttrValueDto  skuSaleAttrValueDto) {
-        Page<SkuSaleAttrValue> queryDtoPage = new Page(skuSaleAttrValueDto.getPageIndex(), skuSaleAttrValueDto.getPageSize());
-        IPage<SkuSaleAttrValue> tablePage = skuSaleAttrValueService.page(queryDtoPage);
+    public BaseWrapper<IPage<SkuSaleAttrValueVo>> querySkuSaleAttrValueWithPage(@RequestBody SkuSaleAttrValueDto skuSaleAttrValueDto) {
+        IPage<SkuSaleAttrValue> tablePage = skuSaleAttrValueService.page(skuSaleAttrValueDto.getPage());
         IPage<SkuSaleAttrValueVo> voIPage = SkuSaleAttrValueConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

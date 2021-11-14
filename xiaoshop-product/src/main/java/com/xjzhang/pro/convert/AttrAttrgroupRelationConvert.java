@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xjzhang.pro.model.dto.AttrAttrgroupRelationDto;
+import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
+import com.xjzhang.pro.model.vo.AttrAttrgroupRelationVo;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.ArrayList;
-import com.xjzhang.pro.model.dto.AttrAttrgroupRelationDto;
-import com.xjzhang.pro.model.vo.AttrAttrgroupRelationVo;
-import com.xjzhang.pro.model.entity.AttrAttrgroupRelation;
 
 /**
  * 属性&属性分组关联 bean 转换
@@ -22,7 +22,7 @@ public class AttrAttrgroupRelationConvert {
     * entity -> vo
     * @return
     */
-    public static  AttrAttrgroupRelationVo entity2Vo(AttrAttrgroupRelation attrAttrgroupRelation) {
+    public static AttrAttrgroupRelationVo entity2Vo(AttrAttrgroupRelation attrAttrgroupRelation) {
         if (attrAttrgroupRelation ==null){
             return null;
         }

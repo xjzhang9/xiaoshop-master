@@ -1,21 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SpuInfoDescConvert;
+import com.xjzhang.pro.model.dto.SpuInfoDescDto;
 import com.xjzhang.pro.model.entity.SpuInfoDesc;
+import com.xjzhang.pro.model.vo.SpuInfoDescVo;
+import com.xjzhang.pro.service.SpuInfoDescService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.SpuInfoDescService;
-import com.xjzhang.pro.model.dto.SpuInfoDescDto;
-import com.xjzhang.pro.model.vo.SpuInfoDescVo;
 
 /**
  * spu信息介绍
@@ -36,9 +35,8 @@ public class SpuInfoDescController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SpuInfoDesc 信息")
     @RequestMapping("/querySpuInfoDescWithPage")
-    public BaseWrapper<IPage<SpuInfoDescVo>> querySpuInfoDescWithPage(@RequestBody SpuInfoDescDto  spuInfoDescDto) {
-        Page<SpuInfoDesc> queryDtoPage = new Page(spuInfoDescDto.getPageIndex(), spuInfoDescDto.getPageSize());
-        IPage<SpuInfoDesc> tablePage = spuInfoDescService.page(queryDtoPage);
+    public BaseWrapper<IPage<SpuInfoDescVo>> querySpuInfoDescWithPage(@RequestBody SpuInfoDescDto spuInfoDescDto) {
+        IPage<SpuInfoDesc> tablePage = spuInfoDescService.page(spuInfoDescDto.getPage());
         IPage<SpuInfoDescVo> voIPage = SpuInfoDescConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

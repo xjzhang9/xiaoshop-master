@@ -2,6 +2,7 @@ package com.xjzhang.pro.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xjzhang.pro.dao.SpuInfoDescDao;
+import com.xjzhang.pro.dao.SpuInfoDescDao;
 import com.xjzhang.pro.model.entity.SpuInfoDesc;
 import com.xjzhang.pro.service.SpuInfoDescService;
 import org.springframework.beans.factory.annotation.Autowired;

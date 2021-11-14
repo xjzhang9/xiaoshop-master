@@ -1,21 +1,20 @@
 package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xjzhang.base.BaseController;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.pro.convert.SkuInfoConvert;
+import com.xjzhang.pro.model.dto.SkuInfoDto;
 import com.xjzhang.pro.model.entity.SkuInfo;
+import com.xjzhang.pro.model.vo.SkuInfoVo;
+import com.xjzhang.pro.service.SkuInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
-import com.xjzhang.pro.service.SkuInfoService;
-import com.xjzhang.pro.model.dto.SkuInfoDto;
-import com.xjzhang.pro.model.vo.SkuInfoVo;
 
 /**
  * sku信息
@@ -36,9 +35,8 @@ public class SkuInfoController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "分页查询 SkuInfo 信息")
     @RequestMapping("/querySkuInfoWithPage")
-    public BaseWrapper<IPage<SkuInfoVo>> querySkuInfoWithPage(@RequestBody SkuInfoDto  skuInfoDto) {
-        Page<SkuInfo> queryDtoPage = new Page(skuInfoDto.getPageIndex(), skuInfoDto.getPageSize());
-        IPage<SkuInfo> tablePage = skuInfoService.page(queryDtoPage);
+    public BaseWrapper<IPage<SkuInfoVo>> querySkuInfoWithPage(@RequestBody SkuInfoDto skuInfoDto) {
+        IPage<SkuInfo> tablePage = skuInfoService.page(skuInfoDto.getPage());
         IPage<SkuInfoVo> voIPage = SkuInfoConvert.entity2VoPage(tablePage);
 
         return ResWrapper.ok(voIPage);

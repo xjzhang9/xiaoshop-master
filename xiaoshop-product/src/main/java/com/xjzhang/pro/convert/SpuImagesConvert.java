@@ -1,12 +1,12 @@
 package com.xjzhang.pro.convert;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.xjzhang.pro.model.entity.SpuInfo;
-import org.springframework.beans.BeanUtils;
-import java.util.List;
-import java.util.ArrayList;
 import com.xjzhang.pro.model.dto.SpuImagesDto;
 import com.xjzhang.pro.model.entity.SpuImages;
+import com.xjzhang.pro.model.entity.SpuInfo;
+import org.springframework.beans.BeanUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * spu图片 bean 转换
