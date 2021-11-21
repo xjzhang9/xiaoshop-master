@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xjzhang.pro.model.dto.CategoryDto;
 import com.xjzhang.pro.model.entity.Category;
 import com.xjzhang.pro.model.vo.CategoryVo;
+import com.xjzhang.pro.model.vo.Catelog2Vo;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -28,6 +29,22 @@ public class CategoryConvert {
             return null;
         }
         CategoryVo categoryVo = new CategoryVo();
+        BeanUtils.copyProperties(category, categoryVo);
+
+        return categoryVo;
+    }
+
+
+    /**
+     * entity -> vo
+     *
+     * @return
+     */
+    public static Catelog2Vo.Catelog3Vo entity2Catelog3Vo(Category category) {
+        if (category == null) {
+            return null;
+        }
+        Catelog2Vo.Catelog3Vo categoryVo = new Catelog2Vo.Catelog3Vo();
         BeanUtils.copyProperties(category, categoryVo);
 
         return categoryVo;
@@ -61,6 +78,23 @@ public class CategoryConvert {
         List<CategoryVo> listVo = new ArrayList<CategoryVo>();
         for (Category item : list) {
             listVo.add(entity2Vo(item));
+        }
+        return listVo;
+    }
+
+
+    /**
+     * entityList -> VoList
+     *
+     * @return
+     */
+    public static List<Catelog2Vo.Catelog3Vo> entity2Catelog3VoList(List<Category> list) {
+        if (list == null || list.size() <= 0) {
+            return null;
+        }
+        List<Catelog2Vo.Catelog3Vo> listVo = new ArrayList<Catelog2Vo.Catelog3Vo>();
+        for (Category item : list) {
+            listVo.add(entity2Catelog3Vo(item));
         }
         return listVo;
     }

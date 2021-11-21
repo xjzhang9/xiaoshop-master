@@ -4,7 +4,11 @@ import com.xjzhang.base.model.LoginUserDto;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xjzhang.pro.model.dto.CategoryDto;
 import com.xjzhang.pro.model.entity.Category;
+import com.xjzhang.pro.model.vo.Catelog2Vo;
 import com.xjzhang.pro.model.vo.CategoryVo;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 商品三级分类
@@ -42,4 +46,18 @@ public interface CategoryService extends IService<Category> {
      * @return
      */
     Long[] getCategoryPath(Long id);
+
+    /**
+     * 获取所有一级分类
+     * @return
+     */
+    List<CategoryVo> getLevel1Catagories();
+
+
+    /**
+     * 查询所有的二级和三级分类
+     *
+     * @return
+     */
+   Map<String, List<Catelog2Vo>> getCategoryMap();
 }

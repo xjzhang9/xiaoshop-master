@@ -2,7 +2,10 @@ package com.xjzhang.pro.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xjzhang.pro.model.entity.ProductAttrValue;
+import com.xjzhang.pro.model.vo.SpuItemAttrGroupVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * spu属性值
@@ -13,6 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 
 @Mapper
-public interface  ProductAttrValueDao extends BaseMapper<ProductAttrValue> {
-
+public interface ProductAttrValueDao extends BaseMapper<ProductAttrValue> {
+    List<SpuItemAttrGroupVo> getProductGroupAttrsBySpuId(Long spuId, Long catalogId);
 }

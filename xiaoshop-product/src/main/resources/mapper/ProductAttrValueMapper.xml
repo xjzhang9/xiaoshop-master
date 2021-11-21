@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjzhang.pro.dao.ProductAttrValueDao">
+    <resultMap id="ProductAttrValueMap" type="com.xjzhang.pro.model.entity.ProductAttrValue">
+        <result property="attrId" column="attr_id"/>
+        <result property="attrName" column="attr_name"/>
+        <result property="attrSort" column="attr_sort"/>
+        <result property="attrValue" column="attr_value"/>
+        <result property="id" column="id"/>
+        <result property="quickShow" column="quick_show"/>
+        <result property="spuId" column="spu_id"/>
+    </resultMap>
+
+    <resultMap id="ProductGroupAttrsBySpuIdMap" type="com.xjzhang.pro.model.vo.SpuItemAttrGroupVo">
+        <result property="groupName" column="group_name"/>
+        <collection property="attrs" ofType="com.xjzhang.pro.model.vo.SpuAttrVo">
+            <result property="attrValue" column="attr_id"/>
+            <result property="attrValue" column="attr_value"/>
+            <result property="attrName" column="attr_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getProductGroupAttrsBySpuId" resultType="com.xjzhang.pro.model.vo.SpuItemAttrGroupVo">
+        select gro.group_name, pro.attr_id, pro.attr_name, pro.attr_value from tb_pro_product_attr_value pro left join tb_pro_attr_attrgroup_relation relation
+        on pro.attr_id = relation.attr_id left join tb_pro_attr_group gro on  relation.attr_group_id = gro.attr_group_id where
+        pro.spu_id = #{spu_id} and gro.catelog_id = #{catelog_id}
+    </select>
+
+
+</mapper>

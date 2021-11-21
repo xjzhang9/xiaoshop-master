@@ -1,6 +1,5 @@
 package com.xjzhang.config;
 
-import com.xjzhang.config.properties.AsyncTaskProperties;
 import com.xjzhang.config.properties.XiaoShopProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,5 +12,4 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @Data
 @EnableConfigurationProperties(XiaoShopProperties.class)
 public class XiaoShopConfig {
-    private AsyncTaskProperties asyncTaskProperties = new AsyncTaskProperties();
 }

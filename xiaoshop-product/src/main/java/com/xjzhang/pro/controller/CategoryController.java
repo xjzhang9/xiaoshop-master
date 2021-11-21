@@ -2,6 +2,7 @@ package com.xjzhang.pro.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xjzhang.base.BaseController;
+import com.xjzhang.base.constant.RedisConstant;
 import com.xjzhang.base.model.LoginUserDto;
 import com.xjzhang.base.utils.TreeUtils;
 import com.xjzhang.base.wrapper.BaseWrapper;
@@ -15,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +39,9 @@ import java.util.List;
 public class CategoryController extends BaseController {
     @Resource
     private CategoryService categoryService;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 查询商品三级分类
@@ -105,7 +110,7 @@ public class CategoryController extends BaseController {
 
         Category category = CategoryConvert.dto2Entity(categoryDto);
         boolean result = categoryService.updateCategoryById(category);
-
+        redisTemplate.delete(RedisConstant.CATEGORY_LIST_KEY);
         return super.handleResult(result);
     }
 
@@ -131,7 +136,7 @@ public class CategoryController extends BaseController {
         log.info("根据Id批量删除商品分类信息, categoryId={}", catIds);
 
         boolean result = categoryService.removeByIds(Arrays.asList(catIds));
-
+        redisTemplate.delete(RedisConstant.CATEGORY_LIST_KEY);
         return super.handleResult(result);
     }
 }

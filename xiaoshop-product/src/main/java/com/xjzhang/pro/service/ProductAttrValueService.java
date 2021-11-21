@@ -3,6 +3,8 @@ package com.xjzhang.pro.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xjzhang.pro.model.entity.ProductAttrValue;
 import com.xjzhang.pro.model.vo.ProductAttrValueVo;
+import com.xjzhang.pro.model.vo.SpuItemAttrGroupVo;
+
 import java.util.List;
 
 /**
@@ -14,4 +16,6 @@ import java.util.List;
  */
 public interface ProductAttrValueService extends IService<ProductAttrValue> {
     List<ProductAttrValueVo> baseAttrlistforspu(Long spuId);
+
+    List<SpuItemAttrGroupVo> getProductGroupAttrsBySpuId(Long spuId, Long catalogId);
 }
