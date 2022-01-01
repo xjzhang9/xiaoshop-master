@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,6 +79,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
         this.save(category);
 
         redisTemplate.delete(RedisConstant.CATEGORY_LIST_KEY);
+
+        Map<String, List<Catelog2Vo>> listMap = getCategoriesDb();
+        String categoryJson = JSON.toJSON(listMap).toString();
+        redisTemplate.opsForValue().set(RedisConstant.CATEGORY_LIST_KEY, categoryJson);
 //        category.setUpdateInfo(loginUserDto);
         return true;
     }
@@ -95,6 +98,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
 
         redisTemplate.delete(RedisConstant.CATEGORY_LIST_KEY);
 
+        Map<String, List<Catelog2Vo>> listMap = getCategoriesDb();
+        String categoryJson = JSON.toJSON(listMap).toString();
+        redisTemplate.opsForValue().set(RedisConstant.CATEGORY_LIST_KEY, categoryJson);
         return true;
     }
 

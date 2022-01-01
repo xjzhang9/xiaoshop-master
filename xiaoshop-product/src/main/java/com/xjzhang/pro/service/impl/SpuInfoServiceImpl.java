@@ -4,10 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xjzhang.base.model.es.SkuEsModel;
 import com.xjzhang.base.wrapper.BaseWrapper;
-import com.xjzhang.es.fegin.api.EsSaveFeginApi;
 import com.xjzhang.pro.constant.ProductConstant;
 import com.xjzhang.pro.dao.SpuInfoDao;
-import com.xjzhang.pro.exception.ProBizException;
 import com.xjzhang.pro.model.dto.BaseAttrs;
 import com.xjzhang.pro.model.dto.Images;
 import com.xjzhang.pro.model.dto.SaveSpuInfoDto;
@@ -21,9 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import javax.annotation.Resource;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
@@ -66,8 +62,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
     @Autowired
     private CategoryService categoryService;
 
-    @Resource
-    private EsSaveFeginApi esSaveFeginApi;
+//    @Resource
+//    private EsSaveFeginApi esSaveFeginApi;
 
     @Resource
     private SpuInfoDao spuInfoDao;
@@ -243,12 +239,12 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
             return skuEsModel;
         }).collect(Collectors.toList());
 
-        BaseWrapper baseWrapper = esSaveFeginApi.saveProductAsIndices(skuEsModelList);
-        if (baseWrapper.success()) {
-            spuInfoDao.upSpuStatus(spuId, ProductConstant.ProductStatusEnum.SPU_UP.getCode());
-        } else {
-            log.error("商品远程上架es保存失败");
-        }
+//        BaseWrapper baseWrapper = esSaveFeginApi.saveProductAsIndices(skuEsModelList);
+//        if (baseWrapper.success()) {
+//            spuInfoDao.upSpuStatus(spuId, ProductConstant.ProductStatusEnum.SPU_UP.getCode());
+//        } else {
+//            log.error("商品远程上架es保存失败");
+//        }
     }
 
     @Override

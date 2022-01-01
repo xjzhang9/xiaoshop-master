@@ -14,7 +14,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * sku销售属性&值
@@ -43,13 +45,22 @@ public class SkuSaleAttrValueController extends BaseController {
     }
 
     /**
+     * 查询sku销售属性value
+     */
+    @ApiOperation(httpMethod = "POST", value = "查询 SkuSaleAttrValue 信息列表")
+    @RequestMapping("/getSkuSaleAttrValuesAsString")
+    public List<String> getSkuSaleAttrValuesAsString(@PathVariable Long skuId) {
+        return skuSaleAttrValueService.getSkuSaleAttrValuesAsString(skuId);
+    }
+
+    /**
      * 根据id获得sku销售属性&值
      */
     @ApiOperation(httpMethod = "POST", value = "获取 SkuSaleAttrValue 信息")
     @RequestMapping("/getSkuSaleAttrValueById")
     public BaseWrapper getSkuSaleAttrValueById(@PathVariable Long id) {
         SkuSaleAttrValue skuSaleAttrValue = skuSaleAttrValueService.getById(id);
-        SkuSaleAttrValueVo skuSaleAttrValueVo=  SkuSaleAttrValueConvert.entity2Vo(skuSaleAttrValue);
+        SkuSaleAttrValueVo skuSaleAttrValueVo = SkuSaleAttrValueConvert.entity2Vo(skuSaleAttrValue);
 
         return ResWrapper.ok(skuSaleAttrValueVo);
     }
@@ -59,7 +70,7 @@ public class SkuSaleAttrValueController extends BaseController {
      */
     @PostMapping("/saveSkuSaleAttrValue")
     @ApiOperation(httpMethod = "POST", value = "保存 SkuSaleAttrValue 信息")
-    public BaseWrapper saveSkuSaleAttrValue (@RequestBody SkuSaleAttrValueDto  skuSaleAttrValueDto) {
+    public BaseWrapper saveSkuSaleAttrValue(@RequestBody SkuSaleAttrValueDto skuSaleAttrValueDto) {
         SkuSaleAttrValue skuSaleAttrValue = SkuSaleAttrValueConvert.dto2Entity(skuSaleAttrValueDto);
         boolean result = skuSaleAttrValueService.save(skuSaleAttrValue);
 
@@ -71,9 +82,9 @@ public class SkuSaleAttrValueController extends BaseController {
      */
     @PostMapping("/updateSkuSaleAttrValueById")
     @ApiOperation(httpMethod = "POST", value = "更新SkuSaleAttrValue 信息")
-    public BaseWrapper updateSkuSaleAttrValueById (@RequestBody SkuSaleAttrValueDto  skuSaleAttrValueDto) {
+    public BaseWrapper updateSkuSaleAttrValueById(@RequestBody SkuSaleAttrValueDto skuSaleAttrValueDto) {
         SkuSaleAttrValue skuSaleAttrValue = SkuSaleAttrValueConvert.dto2Entity(skuSaleAttrValueDto);
-        boolean result =  skuSaleAttrValueService.updateById(skuSaleAttrValue);
+        boolean result = skuSaleAttrValueService.updateById(skuSaleAttrValue);
 
         return super.handleResult(result);
     }
@@ -94,7 +105,7 @@ public class SkuSaleAttrValueController extends BaseController {
      */
     @ApiOperation(httpMethod = "POST", value = "批量删除SkuSaleAttrValue 信息")
     @RequestMapping("/bathDelete")
-    public BaseWrapper bathDelete(@RequestBody Long[] AttrIds){
+    public BaseWrapper bathDelete(@RequestBody Long[] AttrIds) {
         boolean result = skuSaleAttrValueService.removeByIds(Arrays.asList(AttrIds));
 
         return super.handleResult(result);

@@ -23,4 +23,8 @@
        select sale.attr_id, sale.attr_name, sale.attr_value, GROUP_CONCAT(sale.sku_id)  sku_ids from tb_pro_sku_info info left join tb_pro_sku_sale_attr_value sale
         on info.sku_id = sale.sku_id where info.spu_id = #{skuId} group by sale.attr_id, sale.attr_name, sale.attr_value
     </select>
+
+    <select id="getSkuSaleAttrValuesAsString" resultType="string">
+        SELECT attr_value FROM tb_pro_sku_sale_attr_value WHERE sku_id=#{skuId}
+    </select>
 </mapper>

@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValue> {
     List<SkuItemSaleAttrVo> listSaleAttr(Long skuId);
+    List<String> getSkuSaleAttrValuesAsString(Long skuId);
 }

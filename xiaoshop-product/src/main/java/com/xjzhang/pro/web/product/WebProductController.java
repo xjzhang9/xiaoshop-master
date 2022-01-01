@@ -21,7 +21,7 @@ import java.util.Map;
  * @date 2021/11/20 8:58
  */
 @Slf4j
-@RequestMapping("/index/")
+@RequestMapping("pro/index/")
 @RestController
 public class WebProductController {
     @Autowired
@@ -59,6 +59,4 @@ public class WebProductController {
         SkuItemVo skuItemVo = spuInfoService.getItemInfo(skuId);
         return BaseWrapper.ok(skuItemVo);
     }
-
-
 }

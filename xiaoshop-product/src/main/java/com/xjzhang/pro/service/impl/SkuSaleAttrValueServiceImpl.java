@@ -8,6 +8,7 @@ import com.xjzhang.pro.service.SkuSaleAttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,11 +21,16 @@ import java.util.List;
 
 @Service("SkuSaleAttrValueService")
 public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao, SkuSaleAttrValue> implements SkuSaleAttrValueService {
-   @Autowired
-    private  SkuSaleAttrValueDao skuSaleAttrValueDao;
+    @Resource
+    private SkuSaleAttrValueDao skuSaleAttrValueDao;
 
     @Override
     public List<SkuItemSaleAttrVo> listSaleAttr(Long skuId) {
         return skuSaleAttrValueDao.listSaleAttr(skuId);
+    }
+
+    @Override
+    public List<String> getSkuSaleAttrValuesAsString(Long skuId) {
+        return skuSaleAttrValueDao.getSkuSaleAttrValuesAsString(skuId);
     }
 }

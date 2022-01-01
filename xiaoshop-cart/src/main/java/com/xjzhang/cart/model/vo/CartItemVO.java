@@ -1,0 +1,90 @@
+package com.xjzhang.cart.model.vo;
+
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * @author xjzhang
+ * @version 1.0
+ * @date 2021/12/26 16:04
+ */
+@Data
+public class CartItemVO {
+    /**
+     * 商品skuId
+     */
+    private Long skuId;
+
+    /**
+     * 商品标题
+     */
+    private String tittle;
+
+    /**
+     * 商品默认图片
+     */
+    private String image;
+
+    /**
+     * 商品单价
+     */
+    private BigDecimal price;
+
+    /**
+     * 商品是否被选中
+     */
+    private Boolean check;
+
+    /**
+     * 商品总数量
+     */
+    private Integer count;
+
+    /**
+     * 商品总价格
+     */
+    private BigDecimal totalPrice;
+
+    /**
+     * 商品套餐属性
+     */
+    private List<String> skuAttrValues;
+
+    /**
+     * 添加时间
+     */
+    private Date createTime;
+
+    /**
+     * 当前购物车的总价格等于单价*数量
+     * @return
+     */
+    public BigDecimal getTotalPrice() {
+        return  price.multiply(new BigDecimal(count));
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CartItemVO)) {
+            return false;
+        }
+        CartItemVO that = (CartItemVO) o;
+        return getSkuId().equals(that.getSkuId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSkuId());
+    }
+}

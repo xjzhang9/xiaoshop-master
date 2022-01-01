@@ -14,6 +14,20 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/xiaoshop_pro?characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 192.168.56.11
+    port: 6379
+  rabbitmq:
+    host: 192.168.56.11
+    port: 5672
+    virtual-host: /
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   configuration:

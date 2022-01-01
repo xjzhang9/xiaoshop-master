@@ -11,4 +11,6 @@ public class RedisConstant {
     public static final String PREFIX_SHIRO_REFRESH_TOKEN = "shiro_refresh_token";
 
     public static final String CATEGORY_LIST_KEY = "xiao:category:list";
+
+    public static final String PREFIX_CART_TOKEN= "xiao:cart";
 }

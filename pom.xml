@@ -19,7 +19,7 @@
     <modules>
         <module>xiaoshop-common</module>
         <module>xiaoshop-product</module>
-        <!--        <module>xiaoshop-cart</module>-->
+        <module>xiaoshop-cart</module>
         <!--        <module>xiaoshop-order</module>-->
         <module>xiaoshop-auth</module>
         <!--        <module>xiaoshop-ware</module>-->
