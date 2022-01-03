@@ -1,22 +1,18 @@
 package com.xjzhang.cart.service.impl;
 
 import com.xjzhang.base.constant.RedisConstant;
-import com.xjzhang.base.enums.ErrorCodeEnum;
 import com.xjzhang.base.exception.BusinessException;
 import com.xjzhang.base.wrapper.BaseWrapper;
+import com.xjzhang.cart.fegin.api.ProductFeginApi;
 import com.xjzhang.cart.model.vo.CartItemVO;
 import com.xjzhang.cart.model.vo.CartVO;
-import com.xjzhang.pro.fegin.api.ProductFeginApi;
-import com.xjzhang.pro.model.vo.SkuInfoVo;
 import com.xjzhang.cart.service.ICartService;
+import com.xjzhang.pro.model.vo.SkuInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -40,11 +36,11 @@ public class CartServiceImpl implements ICartService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Resource
+    @Autowired
     private ProductFeginApi productFeginApi;
 
-    @Autowired
-    private TaskExecutor taskExecutor;
+//    @Autowired
+//    private TaskExecutor taskExecutor;
 
     private BoundHashOperations<String, Object, Object> getCartRedisOps(String key) {
         return redisTemplate.boundHashOps(RedisConstant.PREFIX_CART_TOKEN + key);
@@ -74,44 +70,44 @@ public class CartServiceImpl implements ICartService {
             cartItemVO.setSkuId(skuId);
             cartItemVO.setCount(num);
             cartItemVO.setCheck(true);
+//
+//            CompletableFuture<Void> completableFuture1 = CompletableFuture.runAsync(new Runnable() {
+//                @Override
+//                public void run() {
+//                    BaseWrapper<SkuInfoVo> baseWrapper = productFeginApi.getSkuInfoById(skuId);
+//                    //TODO: spi调用异常如何处理
+//                    if (baseWrapper != null) {
+//                        SkuInfoVo skuInfoVo = baseWrapper.getData();
+//                        cartItemVO.setTittle(skuInfoVo.getSkuTitle());
+//                        cartItemVO.setImage(skuInfoVo.getSkuDefaultImg());
+//                        cartItemVO.setPrice(skuInfoVo.getPrice());
+//
+//                        //TODO:// 时间数据库怎样设置
+//                    }
+//                }
+//            }, taskExecutor);
 
-            CompletableFuture<Void> completableFuture1 = CompletableFuture.runAsync(new Runnable() {
-                @Override
-                public void run() {
-                    BaseWrapper<SkuInfoVo> baseWrapper = productFeginApi.getSkuInfoById(skuId);\
-                    //TODO: spi调用异常如何处理
-                    if (baseWrapper != null) {
-                        SkuInfoVo skuInfoVo = baseWrapper.getData();
-                        cartItemVO.setTittle(skuInfoVo.getSkuTitle());
-                        cartItemVO.setImage(skuInfoVo.getSkuDefaultImg());
-                        cartItemVO.setPrice(skuInfoVo.getPrice());
 
-                        //TODO:// 时间数据库怎样设置
-                    }
-                }
-            }, taskExecutor);
+//            CompletableFuture<Void> completableFuture2 = CompletableFuture.runAsync(new Runnable() {
+//                @Override
+//                public void run() {
+//                    BaseWrapper<List<String>> baseWrapperlist = productFeginApi.getSkuSaleAttrValuesAsString(skuId);
+//                    if (baseWrapperlist != null) {
+//                        List<String> list = baseWrapperlist.getData();
+//                        cartItemVO.setSkuAttrValues(list);
+//                    }
+//                }
+//            }, taskExecutor);
 
-
-            CompletableFuture<Void> completableFuture2 = CompletableFuture.runAsync(new Runnable() {
-                @Override
-                public void run() {
-                    BaseWrapper<List<String>> baseWrapperlist = productFeginApi.getSkuSaleAttrValuesAsString(skuId);
-                    if (baseWrapperlist != null) {
-                        List<String> list = baseWrapperlist.getData();
-                        cartItemVO.setSkuAttrValues(list);
-                    }
-                }
-            }, taskExecutor);
-
-            try {
-                CompletableFuture.allOf(completableFuture1, completableFuture2).get();
-            } catch (InterruptedException e) {
-                log.error("加入购物车异步执行出错: e =" + e.getMessage());
-                throw new BusinessException("加入购物车异步执行出错：", e);
-            } catch (ExecutionException e) {
-                log.error("加入购物车异步执行出错: e =" + e.getMessage());
-                throw new BusinessException("加入购物车异步执行出错：", e);
-            }
+//            try {
+//                CompletableFuture.allOf(completableFuture1, completableFuture2).get();
+//            } catch (InterruptedException e) {
+//                log.error("加入购物车异步执行出错: e =" + e.getMessage());
+//                throw new BusinessException("加入购物车异步执行出错：", e);
+//            } catch (ExecutionException e) {
+//                log.error("加入购物车异步执行出错: e =" + e.getMessage());
+//                throw new BusinessException("加入购物车异步执行出错：", e);
+//            }
 
             hashOperations.put(skuId.toString(), cartItemVO);
 
@@ -121,7 +117,7 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public CartItemVO getCartItem(Long skuId) {
-        BoundHashOperations<String, Object, Object> hashOperations = getCartRedisOps();
+        BoundHashOperations<String, Object, Object> hashOperations = getCartRedisOps(getUserFlag());
         Object object = hashOperations.get(skuId.toString());
         if (object != null) {
             CartItemVO cartItemVO = (CartItemVO) object;

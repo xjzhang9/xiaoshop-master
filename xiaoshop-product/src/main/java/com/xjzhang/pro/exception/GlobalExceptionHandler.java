@@ -5,7 +5,6 @@ import com.xjzhang.base.model.GlobalExceptionLogDto;
 import com.xjzhang.base.wrapper.BaseWrapper;
 import com.xjzhang.base.wrapper.ResWrapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.annotation.Resource;
 import java.nio.file.AccessDeniedException;
@@ -23,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Slf4j
 @RestControllerAdvice(basePackages = "com.xjzhang.pro")
 public class GlobalExceptionHandler {
-	@Resource
-	private TaskExecutor taskExecutor;
+//	@Resource
+//	private TaskExecutor taskExecutor;
 	@Value("${spring.profiles.active}")
 	String profile;
 	@Value("${spring.application.name}")
@@ -79,10 +78,10 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public BaseWrapper exception(Exception e) {
 		log.info("保存全局异常信息 ex={}", e.getMessage(), e);
-		taskExecutor.execute(() -> {
-			GlobalExceptionLogDto globalExceptionLogDto = new GlobalExceptionLogDto().getGlobalExceptionLogDto(e, profile, applicationName);
-//			mdcExceptionLogFeignApi.saveAndSendExceptionLog(globalExceptionLogDto);
-		});
+//		taskExecutor.execute(() -> {
+//			GlobalExceptionLogDto globalExceptionLogDto = new GlobalExceptionLogDto().getGlobalExceptionLogDto(e, profile, applicationName);
+////			mdcExceptionLogFeignApi.saveAndSendExceptionLog(globalExceptionLogDto);
+//		});
 		return ResWrapper.error();
 	}
 }

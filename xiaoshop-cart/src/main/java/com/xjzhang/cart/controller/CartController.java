@@ -1,11 +1,9 @@
 package com.xjzhang.cart.controller;
 
 import com.xjzhang.base.wrapper.BaseWrapper;
-import com.xjzhang.base.wrapper.ResWrapper;
 import com.xjzhang.cart.model.vo.CartItemVO;
 import com.xjzhang.cart.model.vo.CartVO;
 import com.xjzhang.cart.service.ICartService;
-import com.xjzhang.cart.service.impl.CartServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;

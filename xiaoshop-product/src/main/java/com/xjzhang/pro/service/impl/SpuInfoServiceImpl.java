@@ -3,8 +3,6 @@ package com.xjzhang.pro.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xjzhang.base.model.es.SkuEsModel;
-import com.xjzhang.base.wrapper.BaseWrapper;
-import com.xjzhang.pro.constant.ProductConstant;
 import com.xjzhang.pro.dao.SpuInfoDao;
 import com.xjzhang.pro.model.dto.BaseAttrs;
 import com.xjzhang.pro.model.dto.Images;
@@ -16,13 +14,11 @@ import com.xjzhang.pro.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 /**
@@ -68,8 +64,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
     @Resource
     private SpuInfoDao spuInfoDao;
 
-    @Resource
-    private TaskExecutor taskExecutor;
+//    @Resource
+//    private TaskExecutor taskExecutor;
 
     @Override
     public boolean saveSpuInfo(SaveSpuInfoDto spuInfo) {
@@ -251,49 +247,52 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
     public SkuItemVo getItemInfo(Long skuId) {
         SkuItemVo skuItemVo = new SkuItemVo();
 
-        //1、获取sku信息
-        CompletableFuture<SkuInfo> completableFuture1 = CompletableFuture.supplyAsync(() -> {
-            SkuInfo skuInfo = skuInfoService.getById(skuId);
-            skuItemVo.setInfo(skuInfo);
-            return skuInfo;
-        }, taskExecutor);
+//        //1、获取sku信息
+//        CompletableFuture<SkuInfo> completableFuture1 = CompletableFuture.supplyAsync(() -> {
+//            SkuInfo skuInfo = skuInfoService.getById(skuId);
+//            skuItemVo.setInfo(skuInfo);
+//            return skuInfo;
+//        }, taskExecutor);
+//
+//        //2、获取sku图片信息
+//        CompletableFuture<Void> completableFuture2 = CompletableFuture.runAsync(() -> {
+//            List<SkuImages> skuImagesList = skuImagesService.list(new LambdaQueryWrapper<SkuImages>().eq(SkuImages::getSkuId, skuId));
+//            skuItemVo.setImages(skuImagesList);
+//        }, taskExecutor);
+//
+//        //3、获取spu下面的销售属性集合
+//        CompletableFuture<Void> completableFuture3 = CompletableFuture.runAsync(() -> {
+//            List<SkuItemSaleAttrVo> skuItemSaleAttrVoList = skuSaleAttrValueService.listSaleAttr(skuId);
+//            skuItemVo.setSaleAttr(skuItemSaleAttrVoList);
+//        }, taskExecutor);
+//
+//        // 4、获取spu的介绍信息,依赖步骤1
+//        CompletableFuture<Void> completableFuture4 = completableFuture1.thenAcceptAsync(skuInfo -> {
+//            SpuInfoDesc spuInfoDesc = spuInfoDescService.getById(skuInfo.getSpuId());
+//            skuItemVo.setDesc(spuInfoDesc);
+//        }, taskExecutor);
+//
+//        // 5、获取spu的规格参数信息
+//        CompletableFuture<Void> completableFuture5 = completableFuture1.thenAcceptAsync(skuInfo -> {
+//            List<SpuItemAttrGroupVo> spuItemAttrGroupVos = attrValueService.getProductGroupAttrsBySpuId(skuInfo.getSpuId(), skuInfo.getCatalogId());
+//            skuItemVo.setGroupAttrs(spuItemAttrGroupVos);
+//        }, taskExecutor);
+//
+//        //TODO: 6、获取秒杀和优惠券信息
 
-        //2、获取sku图片信息
-        CompletableFuture<Void> completableFuture2 = CompletableFuture.runAsync(() -> {
-            List<SkuImages> skuImagesList = skuImagesService.list(new LambdaQueryWrapper<SkuImages>().eq(SkuImages::getSkuId, skuId));
-            skuItemVo.setImages(skuImagesList);
-        }, taskExecutor);
+//        try {
+//////            CompletableFuture.allOf(completableFuture1, completableFuture2, completableFuture3, completableFuture4, completableFuture5).get();
+////        } catch (InterruptedException e) {
+////            log.error("获取商品详情信息异常, message = %", e.getMessage());
+////            throw e;
+////        } catch (ExecutionException e) {
+////            log.error("获取商品详情信息异常, message = %", e.getMessage());
+////            throw e;
+////        } finally {
+////            return skuItemVo;
+////        }
 
-        //3、获取spu下面的销售属性集合
-        CompletableFuture<Void> completableFuture3 = CompletableFuture.runAsync(() -> {
-            List<SkuItemSaleAttrVo> skuItemSaleAttrVoList = skuSaleAttrValueService.listSaleAttr(skuId);
-            skuItemVo.setSaleAttr(skuItemSaleAttrVoList);
-        }, taskExecutor);
 
-        // 4、获取spu的介绍信息,依赖步骤1
-        CompletableFuture<Void> completableFuture4 = completableFuture1.thenAcceptAsync(skuInfo -> {
-            SpuInfoDesc spuInfoDesc = spuInfoDescService.getById(skuInfo.getSpuId());
-            skuItemVo.setDesc(spuInfoDesc);
-        }, taskExecutor);
-
-        // 5、获取spu的规格参数信息
-        CompletableFuture<Void> completableFuture5 = completableFuture1.thenAcceptAsync(skuInfo -> {
-            List<SpuItemAttrGroupVo> spuItemAttrGroupVos = attrValueService.getProductGroupAttrsBySpuId(skuInfo.getSpuId(), skuInfo.getCatalogId());
-            skuItemVo.setGroupAttrs(spuItemAttrGroupVos);
-        }, taskExecutor);
-
-        //TODO: 6、获取秒杀和优惠券信息
-
-        try {
-            CompletableFuture.allOf(completableFuture1, completableFuture2, completableFuture3, completableFuture4, completableFuture5).get();
-        } catch (InterruptedException e) {
-            log.error("获取商品详情信息异常, message = %", e.getMessage());
-            throw e;
-        } catch (ExecutionException e) {
-            log.error("获取商品详情信息异常, message = %", e.getMessage());
-            throw e;
-        } finally {
-            return skuItemVo;
-        }
+        return null;
     }
 }

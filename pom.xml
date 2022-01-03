@@ -32,6 +32,7 @@
         <module>xiaoshop-generator</module>
         <module>xiaoshop-dependency</module>
         <module>renren-fast</module>
+        <module>xiaoshop-cart1</module>
     </modules>
 
     <properties>

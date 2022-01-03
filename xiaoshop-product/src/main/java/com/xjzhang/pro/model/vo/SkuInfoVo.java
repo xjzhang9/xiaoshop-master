@@ -15,49 +15,49 @@ import java.math.BigDecimal;
  */
 @Data
 @EqualsAndHashCode()
-public class SkuInfoVo extends BaseVo {
+public class SkuInfoVo {
     /**
-    *  品牌id
-    */
+     * 品牌id
+     */
     private Long brandId;
     /**
-    *  所属分类id
-    */
+     * 所属分类id
+     */
     private Long catalogId;
     /**
-    *  价格
-    */
+     * 价格
+     */
     private BigDecimal price;
     /**
-    *  销量
-    */
+     * 销量
+     */
     private Long saleCount;
     /**
-    *  默认图片
-    */
+     * 默认图片
+     */
     private String skuDefaultImg;
     /**
-    *  sku介绍描述
-    */
+     * sku介绍描述
+     */
     private String skuDesc;
     /**
-    *  skuId
-    */
+     * skuId
+     */
     private Long skuId;
     /**
-    *  sku名称
-    */
+     * sku名称
+     */
     private String skuName;
     /**
-    *  副标题
-    */
+     * 副标题
+     */
     private String skuSubtitle;
     /**
-    *  标题
-    */
+     * 标题
+     */
     private String skuTitle;
     /**
-    *  spuId
-    */
+     * spuId
+     */
     private Long spuId;
 }

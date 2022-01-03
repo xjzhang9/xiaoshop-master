@@ -26,6 +26,12 @@ spring:
             - Path=/api/pro/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: cart_route
+          uri: lb://xiaoshop-cart1
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
         - id: admin_route
           uri: lb://renren-fast
           predicates:

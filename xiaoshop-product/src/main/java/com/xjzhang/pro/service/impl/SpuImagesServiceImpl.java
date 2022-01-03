@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * @author THTF
  */
-@Service("spuImagesService")
+@Service
 public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImages> implements SpuImagesService {
 
     @Override

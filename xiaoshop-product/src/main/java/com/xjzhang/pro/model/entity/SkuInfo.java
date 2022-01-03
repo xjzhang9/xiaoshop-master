@@ -18,11 +18,10 @@ import java.math.BigDecimal;
 
 @Data
 @TableName("tb_pro_sku_info")
-public class SkuInfo extends BaseEntity {
+public class SkuInfo {
     /**
      * 品牌id
      */
-    @TableId
     @TableField("brand_id")
     private Long brandId;
     /**
@@ -53,6 +52,7 @@ public class SkuInfo extends BaseEntity {
     /**
      * skuId
      */
+    @TableId
     @TableField("sku_id")
     private Long skuId;
     /**

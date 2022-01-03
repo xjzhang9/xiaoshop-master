@@ -39,9 +39,9 @@ public class EsSearchServiceImpl implements EsSearchService {
            QueryBuilder queryBuilder =  QueryBuilders.rangeQuery("skuPrice");
            String[] priceStr = searchParam.getSkuPrice().split("_");
 
-           if (priceStr)
+//           if (priceStr)
        }
-       boolQueryBuilder.filter()
+//       boolQueryBuilder.filter()
 
         return null;
     }

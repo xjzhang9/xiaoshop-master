@@ -9,6 +9,7 @@ import com.xjzhang.pro.model.entity.Category;
 import com.xjzhang.pro.model.entity.CategoryBrandRelation;
 import com.xjzhang.pro.service.BrandService;
 import com.xjzhang.pro.service.CategoryBrandRelationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,7 +28,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Resource
     private CategoryBrandRelationDao categoryBrandRelationDao;
 
-    @Resource
+    @Autowired
     private BrandService brandService;
 
     @Override
